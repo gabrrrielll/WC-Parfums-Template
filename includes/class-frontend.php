@@ -78,12 +78,13 @@ class WCP_Frontend {
 			null
 		);
 
-		wp_enqueue_style(
-			'wcp-frontend',
-			WCP_PLUGIN_URL . 'assets/css/frontend.css',
-			array( 'wcp-fonts' ),
-			WCP_VERSION
-		);
+		wp_register_style( 'wcp-frontend', false, array( 'wcp-fonts' ), WCP_VERSION );
+		wp_enqueue_style( 'wcp-frontend' );
+
+		$frontend_css = WCP_PLUGIN_DIR . 'assets/css/frontend.css';
+		if ( file_exists( $frontend_css ) ) {
+			wp_add_inline_style( 'wcp-frontend', file_get_contents( $frontend_css ) );
+		}
 	}
 
 	/**
