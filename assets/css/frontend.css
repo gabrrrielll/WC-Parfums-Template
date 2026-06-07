@@ -8,6 +8,11 @@
 	--wcp-text: #1a1a1a;
 	--wcp-cream: #f5f0e8;
 	--wcp-max-width: 1200px;
+	--wcp-layout-max: 920px;
+	--wcp-layout-gutter: clamp(12px, 3vw, 32px);
+	--wcp-layout-gap: clamp(8px, 2.5vw, 28px);
+	--wcp-col-width: min(100%, 22vw);
+	--wcp-col-max: 240px;
 	--wcp-serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
 	--wcp-sans: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 }
@@ -100,13 +105,25 @@ body.wcp-parfum-body {
 
 .wcp-hero {
 	z-index: 1;
+	padding: 0 var(--wcp-layout-gutter);
 }
 
 .wcp-hero__grid {
 	display: grid;
-	grid-template-columns: minmax(240px, 340px) 1fr;
-	gap: 48px 64px;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	column-gap: var(--wcp-layout-gap);
+	row-gap: 48px;
 	align-items: center;
+	width: 100%;
+	max-width: min(100%, var(--wcp-layout-max));
+	margin: 0 auto;
+}
+
+.wcp-hero__media {
+	grid-column: 1;
+	display: flex;
+	justify-content: center;
+	min-width: 0;
 }
 
 .wcp-arch-frame {
@@ -118,7 +135,8 @@ body.wcp-parfum-body {
 .wcp-arch-frame--tall {
 	border-radius: 0;
 	padding: 0;
-	max-width: 360px;
+	width: var(--wcp-col-width);
+	max-width: var(--wcp-col-max);
 	margin: 0 auto;
 }
 
@@ -137,17 +155,19 @@ body.wcp-parfum-body {
 }
 
 .wcp-hero__product-img {
-	min-height: 380px;
+	min-height: clamp(260px, 32vw, 380px);
 	object-fit: cover;
 }
 
 .wcp-hero__content {
+	grid-column: 2 / -1;
 	text-align: left;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 20px;
-	max-width: 560px;
+	max-width: none;
+	min-width: 0;
 }
 
 .wcp-title-logo {
@@ -170,7 +190,7 @@ body.wcp-parfum-body {
 	font-family: var(--wcp-sans);
 	font-size: clamp(0.95rem, 1.6vw, 1.1rem);
 	line-height: 1.35;
-	max-width: 520px;
+	max-width: 100%;
 	margin: 0;
 }
 
@@ -186,7 +206,7 @@ body.wcp-parfum-body {
 	display: flex;
 	align-items: center;
 	gap: 34px;
-	width: min(100%, 560px);
+	width: 100%;
 	margin-top: 36px;
 }
 
@@ -242,7 +262,7 @@ body.wcp-parfum-body {
 
 .wcp-notes {
 	text-align: center;
-	padding: 0 clamp(12px, 3vw, 32px);
+	padding: 0 var(--wcp-layout-gutter);
 }
 
 .wcp-notes__title {
@@ -257,11 +277,11 @@ body.wcp-parfum-body {
 .wcp-notes__grid {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
-	column-gap: clamp(8px, 2.5vw, 28px);
+	column-gap: var(--wcp-layout-gap);
 	row-gap: 0;
-	align-items: end;
+	align-items: start;
 	width: 100%;
-	max-width: min(100%, 920px);
+	max-width: min(100%, var(--wcp-layout-max));
 	margin: 0 auto;
 }
 
@@ -276,14 +296,12 @@ body.wcp-parfum-body {
 	display: flex;
 	flex-direction: column;
 	align-items: stretch;
-	width: min(100%, 22vw);
-	max-width: 240px;
+	width: var(--wcp-col-width);
+	max-width: var(--wcp-col-max);
 	min-width: 0;
 	margin: 0 auto;
-	border: 1px solid var(--wcp-gold);
-	border-radius: 999px;
-	overflow: hidden;
-	background: #fff;
+	gap: clamp(10px, 2vw, 18px);
+	background: transparent;
 }
 
 .wcp-note__label {
@@ -311,15 +329,19 @@ body.wcp-parfum-body {
 	gap: clamp(6px, 1vw, 10px);
 	text-align: center;
 	background: #fff;
-	flex: 1 1 auto;
+	border: 1px solid var(--wcp-gold);
+	width: 100%;
 	min-height: clamp(100px, 18vw, 140px);
+	flex: 0 0 auto;
 }
 
 .wcp-arch-text--top {
+	border-radius: clamp(60px, 12vw, 96px) clamp(60px, 12vw, 96px) 0 0;
 	padding-bottom: clamp(14px, 2.5vw, 22px);
 }
 
 .wcp-arch-text--bottom {
+	border-radius: 0 0 clamp(60px, 12vw, 96px) clamp(60px, 12vw, 96px);
 	padding-top: clamp(14px, 2.5vw, 22px);
 	justify-content: flex-end;
 }
@@ -327,10 +349,10 @@ body.wcp-parfum-body {
 .wcp-circle-frame {
 	width: 100%;
 	aspect-ratio: 1;
-	border-radius: 0;
+	border-radius: 50%;
 	border: 0;
 	overflow: hidden;
-	background: #fff;
+	background: transparent;
 	flex-shrink: 0;
 }
 
@@ -341,8 +363,9 @@ body.wcp-parfum-body {
 	display: block;
 }
 
-.wcp-note--middle {
-	transform: translateY(clamp(-12px, -2.5vw, -28px));
+.wcp-note--top,
+.wcp-note--base {
+	padding-top: clamp(52px, 11vw, 132px);
 }
 
 /* --------------------------------------------------------------------------
@@ -432,7 +455,12 @@ body.wcp-parfum-body {
 @media (max-width: 960px) {
 	.wcp-hero__grid {
 		grid-template-columns: 1fr;
-		gap: 40px;
+		max-width: min(100%, 280px);
+	}
+
+	.wcp-hero__media,
+	.wcp-hero__content {
+		grid-column: 1;
 	}
 
 	.wcp-hero__media {
@@ -450,8 +478,9 @@ body.wcp-parfum-body {
 		max-width: 260px;
 	}
 
-	.wcp-note--middle {
-		transform: none;
+	.wcp-note--top,
+	.wcp-note--base {
+		padding-top: 0;
 	}
 
 	.wcp-decor--circle {
