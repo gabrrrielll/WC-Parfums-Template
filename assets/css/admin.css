@@ -1,0 +1,42 @@
+.wcp-admin-fields {
+	display: grid;
+	gap: 16px;
+}
+
+.wcp-field__label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 6px;
+}
+
+.wcp-image-field {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	max-width: 320px;
+}
+
+.wcp-image-field__preview {
+	min-height: 80px;
+	border: 1px dashed #c3c4c7;
+	background: #f6f7f7;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 8px;
+}
+
+.wcp-image-field__preview img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+.wcp-image-field__actions {
+	display: flex;
+	gap: 8px;
+}
+
+.wcp-image-field__remove.hidden {
+	display: none;
+}
