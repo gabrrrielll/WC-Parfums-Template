@@ -43,6 +43,16 @@
 		forceDisplay(getClassicPanels(), !isParfum);
 	}
 
+	function scheduleTemplateMode(template) {
+		setTemplateMode(template);
+
+		[50, 250, 1000].forEach(function (delay) {
+			window.setTimeout(function () {
+				setTemplateMode(getSelectedTemplate());
+			}, delay);
+		});
+	}
+
 	function getSelectedTemplate() {
 		var $select = $('#wcp_template');
 		if (!$select.length) {
@@ -151,10 +161,10 @@
 		}
 
 		$select.on('change', function () {
-			setTemplateMode(this.value);
+			scheduleTemplateMode(this.value);
 		});
 
-		setTemplateMode($select.val());
+		scheduleTemplateMode($select.val());
 	}
 
 	function init() {
@@ -165,4 +175,8 @@
 	}
 
 	$(init);
+
+	window.WCPApplyTemplateMode = function () {
+		scheduleTemplateMode(getSelectedTemplate());
+	};
 })(jQuery);

@@ -12,7 +12,7 @@ class WCP_Admin {
 	 */
 	public static function init() {
 		add_action( 'add_meta_boxes', array( __CLASS__, 'add_meta_boxes' ) );
-		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ) );
+		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ), 1 );
 		add_filter( 'admin_body_class', array( __CLASS__, 'admin_body_class' ) );
 	}
 
@@ -85,6 +85,7 @@ class WCP_Admin {
 			return;
 		}
 
+		self::enqueue_dompurify_compat();
 		wp_enqueue_media();
 		wp_enqueue_style(
 			'wcp-admin',
@@ -107,6 +108,24 @@ class WCP_Admin {
 				'templateParfum'  => WCP_Product_Meta::TEMPLATE_PARFUM,
 				'templateDefault' => WCP_Product_Meta::TEMPLATE_DEFAULT,
 			)
+		);
+	}
+
+	/**
+	 * Prevent WooCommerce admin scripts from failing when DOMPurify is not loaded.
+	 */
+	private static function enqueue_dompurify_compat() {
+		foreach ( array( 'wp-dompurify', 'dompurify' ) as $handle ) {
+			if ( wp_script_is( $handle, 'registered' ) ) {
+				wp_enqueue_script( $handle );
+				return;
+			}
+		}
+
+		wp_add_inline_script(
+			'jquery',
+			'window.DOMPurify = window.DOMPurify || { sanitize: function (value) { return value == null ? "" : String(value); } };',
+			'after'
 		);
 	}
 
