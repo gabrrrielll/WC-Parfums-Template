@@ -71,20 +71,13 @@ body.wcp-parfum-body {
 
 /* Decorative gold lines */
 .wcp-decor--lines {
-	pointer-events: none;
-	position: absolute;
-	inset: 0;
-	max-width: var(--wcp-max-width);
-	margin: 0 auto;
-	z-index: 0;
+	display: none;
 }
 
 .wcp-decor--lines::before,
 .wcp-decor--lines::after {
-	content: "";
-	position: absolute;
-	background: var(--wcp-gold);
-	opacity: 0.55;
+	display: none;
+	content: none;
 }
 
 .wcp-decor--lines::before {
@@ -117,21 +110,21 @@ body.wcp-parfum-body {
 }
 
 .wcp-arch-frame {
-	border: 1px solid var(--wcp-gold);
+	border: 0;
 	overflow: hidden;
-	background: rgba(255, 255, 255, 0.35);
+	background: transparent;
 }
 
 .wcp-arch-frame--tall {
-	border-radius: 180px 180px 0 0;
-	padding: 10px 10px 0;
-	max-width: 300px;
+	border-radius: 0;
+	padding: 0;
+	max-width: 360px;
 	margin: 0 auto;
 }
 
 .wcp-arch-frame--wide {
-	border-radius: 200px 200px 0 0;
-	padding: 10px 10px 0;
+	border-radius: 0;
+	padding: 0;
 	max-width: 380px;
 	margin-left: auto;
 }
@@ -149,18 +142,19 @@ body.wcp-parfum-body {
 }
 
 .wcp-hero__content {
-	text-align: center;
+	text-align: left;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
 	gap: 20px;
+	max-width: 560px;
 }
 
 .wcp-title-logo {
 	display: block;
-	max-width: min(100%, 420px);
+	max-width: min(100%, 220px);
 	height: auto;
-	margin: 0 auto;
+	margin: 0;
 }
 
 .wcp-tagline {
@@ -173,8 +167,9 @@ body.wcp-parfum-body {
 }
 
 .wcp-description {
+	font-family: var(--wcp-sans);
 	font-size: clamp(0.95rem, 1.6vw, 1.1rem);
-	line-height: 1.65;
+	line-height: 1.35;
 	max-width: 520px;
 	margin: 0;
 }
@@ -185,6 +180,23 @@ body.wcp-parfum-body {
 
 .wcp-add-to-cart {
 	margin: 8px 0 0;
+}
+
+.wcp-hero__content .wcp-add-to-cart {
+	display: flex;
+	align-items: center;
+	gap: 34px;
+	width: min(100%, 560px);
+	margin-top: 36px;
+}
+
+.wcp-hero__content .wcp-add-to-cart::after {
+	content: "";
+	display: block;
+	flex: 1 1 auto;
+	height: 1px;
+	min-width: 120px;
+	background: rgba(196, 160, 82, 0.65);
 }
 
 .wcp-btn-order,
@@ -337,7 +349,8 @@ body.wcp-parfum-body {
 }
 
 .wcp-title-logo--bottom {
-	max-width: min(100%, 360px);
+	max-width: min(100%, 420px);
+	margin: 0 auto;
 }
 
 .wcp-brand-image {
@@ -356,16 +369,7 @@ body.wcp-parfum-body {
 }
 
 .wcp-decor--circle {
-	position: absolute;
-	right: -40px;
-	bottom: -40px;
-	width: 280px;
-	height: 280px;
-	border: 1px solid var(--wcp-gold);
-	border-radius: 50%;
-	opacity: 0.55;
-	pointer-events: none;
-	z-index: 0;
+	display: none;
 }
 
 .wcp-bottom__media .wcp-arch-frame {

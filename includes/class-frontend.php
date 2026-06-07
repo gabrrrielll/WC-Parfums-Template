@@ -116,7 +116,7 @@ class WCP_Frontend {
 	 * @return void
 	 */
 	public static function render_add_to_cart_button( $product ) {
-		if ( ! $product || ! $product->is_purchasable() ) {
+		if ( ! $product ) {
 			return;
 		}
 
@@ -134,11 +134,19 @@ class WCP_Frontend {
 			return;
 		}
 
-		if ( $product->is_type( 'variable' ) ) {
+		if ( $product->is_type( 'variable' ) && $product->is_purchasable() ) {
 			woocommerce_variable_add_to_cart();
 			return;
 		}
 
-		woocommerce_template_loop_add_to_cart();
+		if ( $product->is_purchasable() ) {
+			woocommerce_template_loop_add_to_cart();
+			return;
+		}
+
+		printf(
+			'<button type="button" class="wcp-btn-order" disabled>%s</button>',
+			esc_html( $button_text )
+		);
 	}
 }
