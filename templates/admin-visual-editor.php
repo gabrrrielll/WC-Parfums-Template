@@ -27,6 +27,7 @@ $bg_style = $bg_url ? 'background-image:url(' . esc_url( $bg_url ) . ');' : '';
 	</div>
 
 	<div class="wcp-visual-canvas" id="wcp-visual-canvas" style="<?php echo esc_attr( $bg_style ); ?>">
+		<div class="wcp-visual-canvas__inner">
 		<p class="wcp-visual-canvas__hint">Previzualizare layout - campurile sunt pozitionate ca pe pagina finala.</p>
 
 		<section class="wcp-visual-section wcp-visual-hero">
@@ -100,5 +101,6 @@ $bg_style = $bg_url ? 'background-image:url(' . esc_url( $bg_url ) . ');' : '';
 				</div>
 			</div>
 		</section>
+		</div>
 	</div>
 </div>

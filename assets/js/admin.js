@@ -3,6 +3,25 @@
 
 	var config = window.wcpAdmin || {};
 
+	var wcPanelSelectors = [
+		'#woocommerce-product-data',
+		'#postdivrich',
+		'#postexcerpt',
+		'#woocommerce-product-images',
+		'#product_images_container',
+		'#wp-content-editor-tools',
+		'#wp-content-wrap',
+		'#editor',
+		'.block-editor',
+		'#postcustom',
+		'#commentsdiv',
+		'#revisionsdiv'
+	].join(', ');
+
+	function isParfumTemplate(template) {
+		return template === config.templateParfum;
+	}
+
 	function openMediaFrame($input, $preview, $remove) {
 		var frame = wp.media({
 			title: 'Selecteaza imagine',
@@ -21,7 +40,6 @@
 
 			$preview.html('<img src="' + url + '" alt="" />');
 			$remove.removeClass('hidden');
-
 			$input.trigger('change');
 		});
 
@@ -32,10 +50,28 @@
 		var $body = $('body');
 		$body.removeClass('wcp-edit-mode-default wcp-edit-mode-parfum_landing');
 
-		if (template === config.templateParfum) {
+		if (isParfumTemplate(template)) {
 			$body.addClass('wcp-edit-mode-parfum_landing');
 		} else {
 			$body.addClass('wcp-edit-mode-default');
+		}
+	}
+
+	function applyTemplateMode(template) {
+		var parfum = isParfumTemplate(template);
+		var $editor = $('#wcp-visual-editor-wrap');
+		var $normalPostboxes = $('#postbox-container-2 .postbox, #normal-sortables .postbox');
+
+		updateBodyClass(template);
+
+		if (parfum) {
+			$editor.show();
+			$normalPostboxes.hide();
+			$(wcPanelSelectors).hide();
+		} else {
+			$editor.hide();
+			$normalPostboxes.show();
+			$(wcPanelSelectors).show();
 		}
 	}
 
@@ -43,6 +79,10 @@
 		var $input = $('#wcp_background_image');
 		var $canvas = $('#wcp-visual-canvas');
 		var attachmentId = parseInt($input.val(), 10);
+
+		if (!$canvas.length) {
+			return;
+		}
 
 		if (!attachmentId) {
 			$canvas.css('background-image', '');
@@ -108,10 +148,10 @@
 		}
 
 		$select.on('change', function () {
-			updateBodyClass($(this).val());
+			applyTemplateMode($(this).val());
 		});
 
-		updateBodyClass($select.val());
+		applyTemplateMode($select.val() || config.currentTemplate || config.templateDefault);
 	}
 
 	$(function () {
