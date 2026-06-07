@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Plugin Name: WC Parfums Template
  * Description: Extinde WooCommerce cu un template custom pentru paginile de produs parfum Find Love.
