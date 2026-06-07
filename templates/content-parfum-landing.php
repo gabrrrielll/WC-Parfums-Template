@@ -51,38 +51,50 @@ $seo_title = ! empty( $data['seo_title'] ) ? $data['seo_title'] : get_the_title(
 	<section class="wcp-section wcp-notes">
 		<div class="wcp-notes__grid">
 			<article class="wcp-note wcp-note--top">
-				<p class="wcp-note__label wcp-note__label--top">Note de varf</p>
-				<?php if ( ! empty( $data['note_top_text'] ) ) : ?>
+				<div class="wcp-note__stack">
 					<div class="wcp-note__text wcp-arch-text wcp-arch-text--top">
-						<?php echo nl2br( esc_html( $data['note_top_text'] ) ); ?>
+						<p class="wcp-note__label">Note de varf</p>
+						<?php if ( ! empty( $data['note_top_text'] ) ) : ?>
+							<div class="wcp-note__body">
+								<?php echo nl2br( esc_html( $data['note_top_text'] ) ); ?>
+							</div>
+						<?php endif; ?>
 					</div>
-				<?php endif; ?>
-				<div class="wcp-note__image wcp-circle-frame">
-					<?php WCP_Frontend::render_image( $data['note_top_image'], 'wcp-note__img', 'Note de varf' ); ?>
+					<div class="wcp-note__image wcp-circle-frame">
+						<?php WCP_Frontend::render_image( $data['note_top_image'], 'wcp-note__img', 'Note de varf' ); ?>
+					</div>
 				</div>
 			</article>
 
 			<article class="wcp-note wcp-note--middle">
-				<p class="wcp-note__label wcp-note__label--middle">Note de mijloc</p>
-				<div class="wcp-note__image wcp-circle-frame">
-					<?php WCP_Frontend::render_image( $data['note_middle_image'], 'wcp-note__img', 'Note de mijloc' ); ?>
-				</div>
-				<?php if ( ! empty( $data['note_middle_text'] ) ) : ?>
-					<div class="wcp-note__text wcp-arch-text wcp-arch-text--bottom">
-						<?php echo nl2br( esc_html( $data['note_middle_text'] ) ); ?>
+				<div class="wcp-note__stack">
+					<div class="wcp-note__image wcp-circle-frame">
+						<?php WCP_Frontend::render_image( $data['note_middle_image'], 'wcp-note__img', 'Note de mijloc' ); ?>
 					</div>
-				<?php endif; ?>
+					<div class="wcp-note__text wcp-arch-text wcp-arch-text--bottom">
+						<?php if ( ! empty( $data['note_middle_text'] ) ) : ?>
+							<div class="wcp-note__body">
+								<?php echo nl2br( esc_html( $data['note_middle_text'] ) ); ?>
+							</div>
+						<?php endif; ?>
+						<p class="wcp-note__label">Note de mijloc</p>
+					</div>
+				</div>
 			</article>
 
 			<article class="wcp-note wcp-note--base">
-				<p class="wcp-note__label wcp-note__label--base">Note de baza</p>
-				<?php if ( ! empty( $data['note_base_text'] ) ) : ?>
+				<div class="wcp-note__stack">
 					<div class="wcp-note__text wcp-arch-text wcp-arch-text--top">
-						<?php echo nl2br( esc_html( $data['note_base_text'] ) ); ?>
+						<p class="wcp-note__label">Note de baza</p>
+						<?php if ( ! empty( $data['note_base_text'] ) ) : ?>
+							<div class="wcp-note__body">
+								<?php echo nl2br( esc_html( $data['note_base_text'] ) ); ?>
+							</div>
+						<?php endif; ?>
 					</div>
-				<?php endif; ?>
-				<div class="wcp-note__image wcp-circle-frame">
-					<?php WCP_Frontend::render_image( $data['note_base_image'], 'wcp-note__img', 'Note de baza' ); ?>
+					<div class="wcp-note__image wcp-circle-frame">
+						<?php WCP_Frontend::render_image( $data['note_base_image'], 'wcp-note__img', 'Note de baza' ); ?>
+					</div>
 				</div>
 			</article>
 		</div>
