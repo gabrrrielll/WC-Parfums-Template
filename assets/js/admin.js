@@ -4,12 +4,43 @@
 	var TEMPLATE_PARFUM  = (window.wcpAdmin && window.wcpAdmin.templateParfum)  || 'parfum_landing';
 	var TEMPLATE_DEFAULT = (window.wcpAdmin && window.wcpAdmin.templateDefault) || 'default';
 
+	function forceDisplay($elements, display) {
+		$elements.each(function () {
+			if (display === false) {
+				this.style.setProperty('display', 'none', 'important');
+			} else {
+				this.style.removeProperty('display');
+			}
+		});
+	}
+
+	function getClassicPanels() {
+		return $([
+			'#woocommerce-product-data',
+			'#postdivrich',
+			'#postexcerpt',
+			'#woocommerce-product-images',
+			'#product_images_container',
+			'#wp-content-wrap',
+			'#editor',
+			'#normal-sortables > .postbox:not(#wcp-parfum-visual-editor)',
+			'#advanced-sortables > .postbox'
+		].join(','));
+	}
+
 	function setTemplateMode(template) {
 		var mode = template === TEMPLATE_PARFUM ? TEMPLATE_PARFUM : TEMPLATE_DEFAULT;
+		var isParfum = mode === TEMPLATE_PARFUM;
+		var $visualEditor = $('#wcp-parfum-visual-editor');
 
 		$('body')
 			.removeClass('wcp-edit-mode-default wcp-edit-mode-parfum_landing')
 			.addClass('wcp-edit-mode-' + mode);
+
+		document.body.setAttribute('data-wcp-template', mode);
+
+		forceDisplay($visualEditor, isParfum);
+		forceDisplay(getClassicPanels(), !isParfum);
 	}
 
 	function getSelectedTemplate() {
@@ -114,15 +145,16 @@
 	function initTemplateToggle() {
 		var $select = $('#wcp_template');
 
-		setTemplateMode(getSelectedTemplate());
-
 		if (!$select.length) {
+			setTemplateMode(TEMPLATE_DEFAULT);
 			return;
 		}
 
 		$select.on('change', function () {
-			setTemplateMode(getSelectedTemplate());
+			setTemplateMode(this.value);
 		});
+
+		setTemplateMode($select.val());
 	}
 
 	function init() {
