@@ -49,8 +49,6 @@ $seo_title = ! empty( $data['seo_title'] ) ? $data['seo_title'] : get_the_title(
 	</section>
 
 	<section class="wcp-section wcp-notes">
-		<h2 class="wcp-notes__title" aria-hidden="true">Note</h2>
-
 		<div class="wcp-notes__grid">
 			<article class="wcp-note wcp-note--top">
 				<p class="wcp-note__label wcp-note__label--top">Note de varf</p>
@@ -88,12 +86,12 @@ $seo_title = ! empty( $data['seo_title'] ) ? $data['seo_title'] : get_the_title(
 				</div>
 			</article>
 		</div>
+		<h2 class="wcp-notes__title">Note</h2>
 	</section>
 
 	<section class="wcp-section wcp-bottom">
 		<div class="wcp-bottom__grid">
 			<div class="wcp-bottom__content">
-				<?php WCP_Frontend::render_image( $data['title_logo_image'], 'wcp-title-logo wcp-title-logo--bottom', $seo_title ); ?>
 				<?php WCP_Frontend::render_image( $data['brand_image'], 'wcp-brand-image', 'Brand' ); ?>
 				<?php WCP_Frontend::render_add_to_cart_button( $product ); ?>
 			</div>

@@ -13,6 +13,7 @@ class WCP_Frontend {
 	public static function init() {
 		add_filter( 'template_include', array( __CLASS__, 'template_include' ), 99 );
 		add_filter( 'document_title_parts', array( __CLASS__, 'document_title_parts' ) );
+		add_filter( 'body_class', array( __CLASS__, 'body_class' ) );
 		add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ) );
 	}
 
@@ -61,6 +62,20 @@ class WCP_Frontend {
 		}
 
 		return $parts;
+	}
+
+	/**
+	 * Add custom body class while keeping the theme header/footer.
+	 *
+	 * @param array $classes Body classes.
+	 * @return array
+	 */
+	public static function body_class( $classes ) {
+		if ( self::is_parfum_product() ) {
+			$classes[] = 'wcp-parfum-body';
+		}
+
+		return $classes;
 	}
 
 	/**

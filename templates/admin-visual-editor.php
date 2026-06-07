@@ -86,10 +86,6 @@ $bg_style = $bg_url ? 'background-image:url(' . esc_url( $bg_url ) . ');' : '';
 		<section class="wcp-visual-section wcp-visual-bottom">
 			<div class="wcp-visual-bottom__grid">
 				<div class="wcp-visual-bottom__content">
-					<div class="wcp-visual-mirror" data-wcp-mirror="wcp_title_logo_image">
-						<span class="wcp-visual-mirror__label">Logo titlu parfum (jos stanga - aceeasi imagine ca sus)</span>
-						<div class="wcp-visual-mirror__preview"></div>
-					</div>
 					<?php WCP_Admin::render_field( 'brand_image', $fields['brand_image'], $data['brand_image'] ); ?>
 					<div class="wcp-visual-cta wcp-visual-cta--static">COMANDA ACUM (automat din WooCommerce)</div>
 				</div>

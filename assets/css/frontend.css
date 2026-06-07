@@ -49,7 +49,7 @@ body.wcp-parfum-body {
 
 .wcp-parfum-page {
 	position: relative;
-	min-height: 100vh;
+	width: 100%;
 	background-color: var(--wcp-cream);
 	background-size: cover;
 	background-position: center;
@@ -237,7 +237,7 @@ body.wcp-parfum-body {
 	font-size: clamp(3rem, 8vw, 5.5rem);
 	font-weight: 400;
 	line-height: 1;
-	margin: 0 0 40px;
+	margin: 28px 0 0;
 	color: var(--wcp-text);
 }
 
@@ -335,7 +335,7 @@ body.wcp-parfum-body {
 
 .wcp-bottom__grid {
 	display: grid;
-	grid-template-columns: 1fr minmax(280px, 420px);
+	grid-template-columns: minmax(240px, 1fr) minmax(260px, 420px);
 	gap: 48px 64px;
 	align-items: center;
 }
@@ -355,12 +355,13 @@ body.wcp-parfum-body {
 
 .wcp-brand-image {
 	display: block;
-	max-width: min(100%, 320px);
+	max-width: min(100%, 360px);
 	height: auto;
 }
 
 .wcp-bottom__media {
 	position: relative;
+	justify-self: end;
 }
 
 .wcp-lifestyle-img {
@@ -398,8 +399,7 @@ body.wcp-parfum-body {
    -------------------------------------------------------------------------- */
 
 @media (max-width: 960px) {
-	.wcp-hero__grid,
-	.wcp-bottom__grid {
+	.wcp-hero__grid {
 		grid-template-columns: 1fr;
 		gap: 40px;
 	}
@@ -435,6 +435,16 @@ body.wcp-parfum-body {
 		bottom: -20px;
 		width: 200px;
 		height: 200px;
+	}
+}
+
+@media (max-width: 700px) {
+	.wcp-bottom__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.wcp-bottom__media {
+		justify-self: center;
 	}
 }
 

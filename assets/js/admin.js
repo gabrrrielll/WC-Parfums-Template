@@ -110,23 +110,6 @@
 		});
 	}
 
-	function updateLogoMirror() {
-		var $source = $('#wcp_title_logo_image');
-		var $mirror = $('[data-wcp-mirror="wcp_title_logo_image"] .wcp-visual-mirror__preview');
-		var $sourcePreview = $source.closest('.wcp-image-field').find('.wcp-image-field__preview');
-
-		if (!$mirror.length || !$sourcePreview.length) {
-			return;
-		}
-
-		var $img = $sourcePreview.find('img');
-		if ($img.length) {
-			$mirror.html('<img src="' + $img.attr('src') + '" alt="" />');
-		} else {
-			$mirror.html('<span class="wcp-image-field__placeholder">Aceasta imagine apare si jos stanga</span>');
-		}
-	}
-
 	function bindImageFields() {
 		$(document).on('click', '.wcp-image-field__upload', function (e) {
 			e.preventDefault();
@@ -149,7 +132,6 @@
 		});
 
 		$(document).on('change', '#wcp_background_image', updateBackgroundPreview);
-		$(document).on('change', '#wcp_title_logo_image', updateLogoMirror);
 	}
 
 	function initTemplateToggle() {
@@ -171,7 +153,6 @@
 		bindImageFields();
 		initTemplateToggle();
 		updateBackgroundPreview();
-		updateLogoMirror();
 	}
 
 	$(init);
