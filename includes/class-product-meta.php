@@ -34,76 +34,98 @@ class WCP_Product_Meta {
 	}
 
 	/**
-	 * Field definitions for admin UI.
+	 * Template selector options.
+	 *
+	 * @return array
+	 */
+	public static function get_template_options() {
+		return array(
+			self::TEMPLATE_DEFAULT => 'WooCommerce standard',
+			self::TEMPLATE_PARFUM  => 'Parfum Find Love (landing)',
+		);
+	}
+
+	/**
+	 * Content field definitions for the visual editor (excludes template).
+	 *
+	 * @return array
+	 */
+	public static function get_content_fields() {
+		return array(
+			'seo_title' => array(
+				'type'  => 'text',
+				'label' => 'Titlu SEO (nu se afiseaza vizual)',
+			),
+			'background_image' => array(
+				'type'  => 'image',
+				'label' => 'Fundal pagina',
+			),
+			'hero_product_image' => array(
+				'type'  => 'image',
+				'label' => 'Imagine produs (sus stanga)',
+			),
+			'title_logo_image' => array(
+				'type'  => 'image',
+				'label' => 'Logo titlu parfum (sus dreapta si jos stanga)',
+			),
+			'tagline' => array(
+				'type'  => 'text',
+				'label' => 'Tagline (ex: Calm. Armonie. Iubire de sine.)',
+			),
+			'hero_description' => array(
+				'type'  => 'textarea',
+				'label' => 'Descriere principala',
+			),
+			'note_top_image' => array(
+				'type'  => 'image',
+				'label' => 'Note de varf - imagine',
+			),
+			'note_top_text' => array(
+				'type'  => 'textarea',
+				'label' => 'Note de varf - text',
+			),
+			'note_middle_image' => array(
+				'type'  => 'image',
+				'label' => 'Note de mijloc - imagine',
+			),
+			'note_middle_text' => array(
+				'type'  => 'textarea',
+				'label' => 'Note de mijloc - text',
+			),
+			'note_base_image' => array(
+				'type'  => 'image',
+				'label' => 'Note de baza - imagine',
+			),
+			'note_base_text' => array(
+				'type'  => 'textarea',
+				'label' => 'Note de baza - text',
+			),
+			'brand_image' => array(
+				'type'  => 'image',
+				'label' => 'Imagine brand (ex: + MAGNETIC ATTRACTION +)',
+			),
+			'lifestyle_image' => array(
+				'type'  => 'image',
+				'label' => 'Imagine lifestyle (jos dreapta)',
+			),
+		);
+	}
+
+	/**
+	 * All fields including template (for data loading).
 	 *
 	 * @return array
 	 */
 	public static function get_fields() {
-		return array(
-			'template' => array(
-				'type'    => 'select',
-				'label'   => __( 'Template pagin? produs', 'wc-parfums-template' ),
-				'options' => array(
-					self::TEMPLATE_DEFAULT => __( 'WooCommerce standard', 'wc-parfums-template' ),
-					self::TEMPLATE_PARFUM  => __( 'Parfum Find Love (landing)', 'wc-parfums-template' ),
+		return array_merge(
+			array(
+				'template' => array(
+					'type'    => 'select',
+					'label'   => 'Template pagina produs',
+					'options' => self::get_template_options(),
 				),
 			),
-			'seo_title' => array(
-				'type'  => 'text',
-				'label' => __( 'Titlu SEO (nu se afi?eaz? vizual)', 'wc-parfums-template' ),
-			),
-			'background_image' => array(
-				'type'  => 'image',
-				'label' => __( 'Fundal pagin?', 'wc-parfums-template' ),
-			),
-			'hero_product_image' => array(
-				'type'  => 'image',
-				'label' => __( 'Imagine produs (sus stânga)', 'wc-parfums-template' ),
-			),
-			'title_logo_image' => array(
-				'type'  => 'image',
-				'label' => __( 'Logo titlu parfum (sus ?i jos stânga)', 'wc-parfums-template' ),
-			),
-			'tagline' => array(
-				'type'  => 'text',
-				'label' => __( 'Tagline (ex: Calm. Armonie. Iubire de sine.)', 'wc-parfums-template' ),
-			),
-			'hero_description' => array(
-				'type'  => 'textarea',
-				'label' => __( 'Descriere principal?', 'wc-parfums-template' ),
-			),
-			'note_top_image' => array(
-				'type'  => 'image',
-				'label' => __( 'Note de vârf – imagine', 'wc-parfums-template' ),
-			),
-			'note_top_text' => array(
-				'type'  => 'textarea',
-				'label' => __( 'Note de vârf – text', 'wc-parfums-template' ),
-			),
-			'note_middle_image' => array(
-				'type'  => 'image',
-				'label' => __( 'Note de mijloc – imagine', 'wc-parfums-template' ),
-			),
-			'note_middle_text' => array(
-				'type'  => 'textarea',
-				'label' => __( 'Note de mijloc – text', 'wc-parfums-template' ),
-			),
-			'note_base_image' => array(
-				'type'  => 'image',
-				'label' => __( 'Note de baz? – imagine', 'wc-parfums-template' ),
-			),
-			'note_base_text' => array(
-				'type'  => 'textarea',
-				'label' => __( 'Note de baz? – text', 'wc-parfums-template' ),
-			),
-			'brand_image' => array(
-				'type'  => 'image',
-				'label' => __( 'Imagine brand (ex: + MAGNETIC ATTRACTION +)', 'wc-parfums-template' ),
-			),
-			'lifestyle_image' => array(
-				'type'  => 'image',
-				'label' => __( 'Imagine lifestyle (jos dreapta)', 'wc-parfums-template' ),
-			),
+			self::get_content_fields()
 		);
 	}
 
@@ -144,6 +166,19 @@ class WCP_Product_Meta {
 	public static function uses_parfum_template( $product_id ) {
 		$template = get_post_meta( $product_id, self::META_TEMPLATE, true );
 		return self::TEMPLATE_PARFUM === $template;
+	}
+
+	/**
+	 * Get saved template slug for a product.
+	 *
+	 * @param int $product_id Product ID.
+	 * @return string
+	 */
+	public static function get_template( $product_id ) {
+		$template = get_post_meta( $product_id, self::META_TEMPLATE, true );
+		return in_array( $template, array( self::TEMPLATE_DEFAULT, self::TEMPLATE_PARFUM ), true )
+			? $template
+			: self::TEMPLATE_DEFAULT;
 	}
 
 	/**

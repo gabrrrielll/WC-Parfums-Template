@@ -53,21 +53,21 @@ $seo_title = ! empty( $data['seo_title'] ) ? $data['seo_title'] : get_the_title(
 
 		<div class="wcp-notes__grid">
 			<article class="wcp-note wcp-note--top">
-				<p class="wcp-note__label wcp-note__label--top"><?php esc_html_e( 'Note de vrf', 'wc-parfums-template' ); ?></p>
+				<p class="wcp-note__label wcp-note__label--top">Note de varf</p>
 				<?php if ( ! empty( $data['note_top_text'] ) ) : ?>
 					<div class="wcp-note__text wcp-arch-text wcp-arch-text--top">
 						<?php echo nl2br( esc_html( $data['note_top_text'] ) ); ?>
 					</div>
 				<?php endif; ?>
 				<div class="wcp-note__image wcp-circle-frame">
-					<?php WCP_Frontend::render_image( $data['note_top_image'], 'wcp-note__img', __( 'Note de vrf', 'wc-parfums-template' ) ); ?>
+					<?php WCP_Frontend::render_image( $data['note_top_image'], 'wcp-note__img', 'Note de varf' ); ?>
 				</div>
 			</article>
 
 			<article class="wcp-note wcp-note--middle">
-				<p class="wcp-note__label wcp-note__label--middle"><?php esc_html_e( 'Note de mijloc', 'wc-parfums-template' ); ?></p>
+				<p class="wcp-note__label wcp-note__label--middle">Note de mijloc</p>
 				<div class="wcp-note__image wcp-circle-frame">
-					<?php WCP_Frontend::render_image( $data['note_middle_image'], 'wcp-note__img', __( 'Note de mijloc', 'wc-parfums-template' ) ); ?>
+					<?php WCP_Frontend::render_image( $data['note_middle_image'], 'wcp-note__img', 'Note de mijloc' ); ?>
 				</div>
 				<?php if ( ! empty( $data['note_middle_text'] ) ) : ?>
 					<div class="wcp-note__text wcp-arch-text wcp-arch-text--bottom">
@@ -77,14 +77,14 @@ $seo_title = ! empty( $data['seo_title'] ) ? $data['seo_title'] : get_the_title(
 			</article>
 
 			<article class="wcp-note wcp-note--base">
-				<p class="wcp-note__label wcp-note__label--base"><?php esc_html_e( 'Note de baz?', 'wc-parfums-template' ); ?></p>
+				<p class="wcp-note__label wcp-note__label--base">Note de baza</p>
 				<?php if ( ! empty( $data['note_base_text'] ) ) : ?>
 					<div class="wcp-note__text wcp-arch-text wcp-arch-text--top">
 						<?php echo nl2br( esc_html( $data['note_base_text'] ) ); ?>
 					</div>
 				<?php endif; ?>
 				<div class="wcp-note__image wcp-circle-frame">
-					<?php WCP_Frontend::render_image( $data['note_base_image'], 'wcp-note__img', __( 'Note de baz?', 'wc-parfums-template' ) ); ?>
+					<?php WCP_Frontend::render_image( $data['note_base_image'], 'wcp-note__img', 'Note de baza' ); ?>
 				</div>
 			</article>
 		</div>
@@ -94,7 +94,7 @@ $seo_title = ! empty( $data['seo_title'] ) ? $data['seo_title'] : get_the_title(
 		<div class="wcp-bottom__grid">
 			<div class="wcp-bottom__content">
 				<?php WCP_Frontend::render_image( $data['title_logo_image'], 'wcp-title-logo wcp-title-logo--bottom', $seo_title ); ?>
-				<?php WCP_Frontend::render_image( $data['brand_image'], 'wcp-brand-image', __( 'Brand', 'wc-parfums-template' ) ); ?>
+				<?php WCP_Frontend::render_image( $data['brand_image'], 'wcp-brand-image', 'Brand' ); ?>
 				<?php WCP_Frontend::render_add_to_cart_button( $product ); ?>
 			</div>
 

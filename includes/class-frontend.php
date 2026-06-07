@@ -119,7 +119,7 @@ class WCP_Frontend {
 			return;
 		}
 
-		$button_text = __( 'COMAND? ACUM', 'wc-parfums-template' );
+		$button_text = 'COMANDA ACUM';
 
 		if ( $product->is_type( 'simple' ) ) {
 			echo '<form class="wcp-add-to-cart" method="post" action="' . esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ) . '">';
