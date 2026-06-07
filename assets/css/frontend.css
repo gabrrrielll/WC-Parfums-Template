@@ -200,28 +200,40 @@ body.wcp-parfum-body {
 }
 
 .wcp-btn-order,
-.wcp-parfum-page .single_add_to_cart_button,
-.wcp-parfum-page .button {
-	appearance: none;
-	border: 1px solid var(--wcp-gold);
-	background: rgba(255, 255, 255, 0.65);
-	color: var(--wcp-text);
-	font-family: var(--wcp-sans);
-	font-size: 0.8rem;
-	font-weight: 600;
-	letter-spacing: 0.14em;
-	text-transform: uppercase;
-	padding: 14px 36px;
-	border-radius: 999px;
+.wcp-parfum-page button.wcp-btn-order,
+.wcp-parfum-page .wcp-add-to-cart button.wcp-btn-order {
+	appearance: none !important;
+	border: 1px solid var(--wcp-gold) !important;
+	background: rgba(255, 255, 255, 0.65) !important;
+	background-color: rgba(255, 255, 255, 0.65) !important;
+	color: var(--wcp-text) !important;
+	font-family: var(--wcp-sans) !important;
+	font-size: 0.8rem !important;
+	font-weight: 600 !important;
+	letter-spacing: 0.08em !important;
+	line-height: 1 !important;
+	text-transform: uppercase !important;
+	padding: 13px 24px !important;
+	border-radius: 999px !important;
+	box-shadow: none !important;
+	text-decoration: none !important;
 	cursor: pointer;
 	transition: background 0.2s ease, color 0.2s ease;
 }
 
 .wcp-btn-order:hover,
-.wcp-parfum-page .single_add_to_cart_button:hover,
-.wcp-parfum-page .button:hover {
-	background: var(--wcp-gold);
-	color: #fff;
+.wcp-parfum-page button.wcp-btn-order:hover,
+.wcp-parfum-page .wcp-add-to-cart button.wcp-btn-order:hover {
+	background: var(--wcp-gold) !important;
+	background-color: var(--wcp-gold) !important;
+	color: #fff !important;
+	border-color: var(--wcp-gold) !important;
+}
+
+.wcp-btn-order:disabled,
+.wcp-parfum-page button.wcp-btn-order:disabled {
+	opacity: 1 !important;
+	cursor: default;
 }
 
 /* --------------------------------------------------------------------------
@@ -234,18 +246,21 @@ body.wcp-parfum-body {
 
 .wcp-notes__title {
 	font-family: var(--wcp-serif);
-	font-size: clamp(3rem, 8vw, 5.5rem);
+	font-size: clamp(2.7rem, 5vw, 4.8rem);
 	font-weight: 400;
 	line-height: 1;
-	margin: 28px 0 0;
+	margin: 8px 0 0;
 	color: var(--wcp-text);
 }
 
 .wcp-notes__grid {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 24px 32px;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	column-gap: 0;
+	row-gap: 0;
 	align-items: end;
+	max-width: 760px;
+	margin: 0 auto;
 }
 
 .wcp-note {
@@ -258,33 +273,34 @@ body.wcp-parfum-body {
 
 .wcp-note__label {
 	font-family: var(--wcp-serif);
-	font-size: clamp(1.4rem, 3vw, 2.2rem);
+	font-size: clamp(1rem, 1.6vw, 1.45rem);
 	line-height: 1.1;
-	margin: 0 0 12px;
+	margin: 0 0 4px;
 	color: var(--wcp-text);
 }
 
 .wcp-note__label--top {
-	align-self: flex-start;
-	margin-left: 8%;
+	align-self: center;
+	margin-left: 0;
 }
 
 .wcp-note__label--middle {
-	margin-bottom: 16px;
+	margin: 4px 0 0;
+	order: 3;
 }
 
 .wcp-note__label--base {
-	align-self: flex-end;
-	margin-right: 8%;
+	align-self: center;
+	margin-right: 0;
 }
 
 .wcp-arch-text {
 	border: 1px solid var(--wcp-gold);
-	padding: 28px 20px 24px;
-	font-size: clamp(0.82rem, 1.3vw, 0.95rem);
-	line-height: 1.55;
-	max-width: 280px;
-	min-height: 180px;
+	padding: 24px 16px 18px;
+	font-size: clamp(0.64rem, 0.9vw, 0.78rem);
+	line-height: 1.35;
+	max-width: 180px;
+	min-height: 116px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -293,40 +309,49 @@ body.wcp-parfum-body {
 }
 
 .wcp-arch-text--top {
-	border-radius: 140px 140px 0 0;
+	border-radius: 96px 96px 0 0;
 	border-bottom: none;
-	padding-bottom: 36px;
-	margin-bottom: -12px;
+	padding-bottom: 24px;
+	margin-bottom: -8px;
 	z-index: 2;
 }
 
 .wcp-arch-text--bottom {
-	border-radius: 0 0 140px 140px;
+	border-radius: 0 0 96px 96px;
 	border-top: none;
-	padding-top: 36px;
-	margin-top: -12px;
+	padding-top: 24px;
+	margin-top: -8px;
 	z-index: 2;
 }
 
 .wcp-circle-frame {
-	width: min(100%, 220px);
-	aspect-ratio: 1;
-	border-radius: 50%;
-	border: 1px solid var(--wcp-gold);
-	overflow: hidden;
-	background: rgba(255, 255, 255, 0.3);
+	width: min(100%, 170px);
+	aspect-ratio: auto;
+	border-radius: 0;
+	border: 0;
+	overflow: visible;
+	background: transparent;
 	z-index: 1;
 }
 
 .wcp-note__img {
 	width: 100%;
-	height: 100%;
-	object-fit: cover;
+	height: auto;
+	object-fit: contain;
 	display: block;
 }
 
 .wcp-note--middle {
-	padding-top: 24px;
+	padding-top: 0;
+	transform: translateY(-28px);
+}
+
+.wcp-note--middle .wcp-circle-frame {
+	order: 1;
+}
+
+.wcp-note--middle .wcp-arch-text {
+	order: 2;
 }
 
 /* --------------------------------------------------------------------------
@@ -335,9 +360,11 @@ body.wcp-parfum-body {
 
 .wcp-bottom__grid {
 	display: grid;
-	grid-template-columns: minmax(240px, 1fr) minmax(260px, 420px);
-	gap: 48px 64px;
-	align-items: center;
+	grid-template-columns: minmax(280px, 1fr) minmax(320px, 52vw);
+	gap: 0;
+	align-items: end;
+	max-width: none;
+	width: 100%;
 }
 
 .wcp-bottom__content {
@@ -346,6 +373,7 @@ body.wcp-parfum-body {
 	align-items: center;
 	text-align: center;
 	gap: 24px;
+	padding: 48px 32px 64px max(32px, calc((100vw - var(--wcp-max-width)) / 2));
 }
 
 .wcp-title-logo--bottom {
@@ -362,11 +390,20 @@ body.wcp-parfum-body {
 .wcp-bottom__media {
 	position: relative;
 	justify-self: end;
+	align-self: end;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
 }
 
 .wcp-lifestyle-img {
-	min-height: 420px;
-	object-fit: cover;
+	display: block;
+	width: auto;
+	max-width: none;
+	height: auto;
+	min-height: 0;
+	object-fit: contain;
 }
 
 .wcp-decor--circle {
@@ -376,6 +413,9 @@ body.wcp-parfum-body {
 .wcp-bottom__media .wcp-arch-frame {
 	position: relative;
 	z-index: 1;
+	width: auto;
+	max-width: none;
+	margin: 0 0 0 auto;
 }
 
 /* --------------------------------------------------------------------------
@@ -406,10 +446,6 @@ body.wcp-parfum-body {
 
 	.wcp-hero__media {
 		order: -1;
-	}
-
-	.wcp-arch-frame--wide {
-		margin: 0 auto;
 	}
 
 	.wcp-notes__grid {
@@ -443,8 +479,16 @@ body.wcp-parfum-body {
 		grid-template-columns: 1fr;
 	}
 
+	.wcp-bottom__content {
+		padding: 40px 20px;
+	}
+
 	.wcp-bottom__media {
 		justify-self: center;
+	}
+
+	.wcp-bottom__media .wcp-arch-frame {
+		margin: 0 auto;
 	}
 }
 
