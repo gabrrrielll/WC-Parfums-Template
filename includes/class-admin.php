@@ -87,19 +87,17 @@ class WCP_Admin {
 
 		self::enqueue_dompurify_compat();
 		wp_enqueue_media();
-		wp_enqueue_style(
-			'wcp-admin',
-			WCP_PLUGIN_URL . 'assets/css/admin.css',
-			array(),
-			WCP_VERSION
-		);
-		wp_enqueue_script(
-			'wcp-admin',
-			WCP_PLUGIN_URL . 'assets/js/admin.js',
-			array( 'jquery' ),
-			WCP_VERSION,
-			true
-		);
+
+		wp_register_style( 'wcp-admin', false, array(), WCP_VERSION );
+		wp_enqueue_style( 'wcp-admin' );
+
+		$admin_css = WCP_PLUGIN_DIR . 'assets/css/admin.css';
+		if ( file_exists( $admin_css ) ) {
+			wp_add_inline_style( 'wcp-admin', file_get_contents( $admin_css ) );
+		}
+
+		wp_register_script( 'wcp-admin', false, array( 'jquery' ), WCP_VERSION, true );
+		wp_enqueue_script( 'wcp-admin' );
 
 		wp_localize_script(
 			'wcp-admin',
@@ -109,6 +107,11 @@ class WCP_Admin {
 				'templateDefault' => WCP_Product_Meta::TEMPLATE_DEFAULT,
 			)
 		);
+
+		$admin_js = WCP_PLUGIN_DIR . 'assets/js/admin.js';
+		if ( file_exists( $admin_js ) ) {
+			wp_add_inline_script( 'wcp-admin', file_get_contents( $admin_js ), 'after' );
+		}
 	}
 
 	/**
