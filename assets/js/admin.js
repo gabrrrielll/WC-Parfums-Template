@@ -1,25 +1,25 @@
 (function ($) {
 	'use strict';
 
-	var config = window.wcpAdmin || {};
+	var TEMPLATE_PARFUM  = (window.wcpAdmin && window.wcpAdmin.templateParfum)  || 'parfum_landing';
+	var TEMPLATE_DEFAULT = (window.wcpAdmin && window.wcpAdmin.templateDefault) || 'default';
 
-	var wcPanelSelectors = [
-		'#woocommerce-product-data',
-		'#postdivrich',
-		'#postexcerpt',
-		'#woocommerce-product-images',
-		'#product_images_container',
-		'#wp-content-editor-tools',
-		'#wp-content-wrap',
-		'#editor',
-		'.block-editor',
-		'#postcustom',
-		'#commentsdiv',
-		'#revisionsdiv'
-	].join(', ');
+	function setTemplateMode(template) {
+		var mode = template === TEMPLATE_PARFUM ? TEMPLATE_PARFUM : TEMPLATE_DEFAULT;
 
-	function isParfumTemplate(template) {
-		return template === config.templateParfum;
+		$('body')
+			.removeClass('wcp-edit-mode-default wcp-edit-mode-parfum_landing')
+			.addClass('wcp-edit-mode-' + mode);
+	}
+
+	function getSelectedTemplate() {
+		var $select = $('#wcp_template');
+		if (!$select.length) {
+			return TEMPLATE_DEFAULT;
+		}
+
+		var value = $select.val();
+		return value === TEMPLATE_PARFUM ? TEMPLATE_PARFUM : TEMPLATE_DEFAULT;
 	}
 
 	function openMediaFrame($input, $preview, $remove) {
@@ -46,44 +46,15 @@
 		frame.open();
 	}
 
-	function updateBodyClass(template) {
-		var $body = $('body');
-		$body.removeClass('wcp-edit-mode-default wcp-edit-mode-parfum_landing');
-
-		if (isParfumTemplate(template)) {
-			$body.addClass('wcp-edit-mode-parfum_landing');
-		} else {
-			$body.addClass('wcp-edit-mode-default');
-		}
-	}
-
-	function applyTemplateMode(template) {
-		var parfum = isParfumTemplate(template);
-		var $editor = $('#wcp-visual-editor-wrap');
-		var $normalPostboxes = $('#postbox-container-2 .postbox, #normal-sortables .postbox');
-
-		updateBodyClass(template);
-
-		if (parfum) {
-			$editor.show();
-			$normalPostboxes.hide();
-			$(wcPanelSelectors).hide();
-		} else {
-			$editor.hide();
-			$normalPostboxes.show();
-			$(wcPanelSelectors).show();
-		}
-	}
-
 	function updateBackgroundPreview() {
 		var $input = $('#wcp_background_image');
 		var $canvas = $('#wcp-visual-canvas');
-		var attachmentId = parseInt($input.val(), 10);
 
 		if (!$canvas.length) {
 			return;
 		}
 
+		var attachmentId = parseInt($input.val(), 10);
 		if (!attachmentId) {
 			$canvas.css('background-image', '');
 			return;
@@ -143,21 +114,23 @@
 	function initTemplateToggle() {
 		var $select = $('#wcp_template');
 
+		setTemplateMode(getSelectedTemplate());
+
 		if (!$select.length) {
 			return;
 		}
 
 		$select.on('change', function () {
-			applyTemplateMode($(this).val());
+			setTemplateMode(getSelectedTemplate());
 		});
-
-		applyTemplateMode($select.val() || config.currentTemplate || config.templateDefault);
 	}
 
-	$(function () {
+	function init() {
 		bindImageFields();
 		initTemplateToggle();
 		updateBackgroundPreview();
 		updateLogoMirror();
-	});
+	}
+
+	$(init);
 })(jQuery);

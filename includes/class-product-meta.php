@@ -31,6 +31,7 @@ class WCP_Product_Meta {
 	 */
 	public static function init() {
 		add_action( 'save_post_product', array( __CLASS__, 'save' ), 10, 2 );
+		add_action( 'woocommerce_process_product_meta', array( __CLASS__, 'save_wc' ), 10, 1 );
 	}
 
 	/**
@@ -208,6 +209,15 @@ class WCP_Product_Meta {
 	}
 
 	/**
+	 * Save via WooCommerce product meta hook.
+	 *
+	 * @param int $product_id Product ID.
+	 */
+	public static function save_wc( $product_id ) {
+		self::persist_meta( $product_id );
+	}
+
+	/**
 	 * Save product meta.
 	 *
 	 * @param int     $post_id Post ID.
@@ -218,6 +228,19 @@ class WCP_Product_Meta {
 			return;
 		}
 
+		if ( ! $post || 'product' !== $post->post_type ) {
+			return;
+		}
+
+		self::persist_meta( $post_id );
+	}
+
+	/**
+	 * Persist template and field values.
+	 *
+	 * @param int $post_id Product ID.
+	 */
+	private static function persist_meta( $post_id ) {
 		if ( ! isset( $_POST['wcp_meta_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['wcp_meta_nonce'] ) ), 'wcp_save_meta' ) ) {
 			return;
 		}

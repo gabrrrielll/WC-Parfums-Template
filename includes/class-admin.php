@@ -12,13 +12,12 @@ class WCP_Admin {
 	 */
 	public static function init() {
 		add_action( 'add_meta_boxes', array( __CLASS__, 'add_meta_boxes' ) );
-		add_action( 'edit_form_after_title', array( __CLASS__, 'render_visual_editor_wrap' ) );
 		add_action( 'admin_enqueue_scripts', array( __CLASS__, 'enqueue_assets' ) );
 		add_filter( 'admin_body_class', array( __CLASS__, 'admin_body_class' ) );
 	}
 
 	/**
-	 * Register sidebar metabox for template selector only.
+	 * Register metaboxes.
 	 */
 	public static function add_meta_boxes() {
 		add_meta_box(
@@ -27,6 +26,15 @@ class WCP_Admin {
 			array( __CLASS__, 'render_template_selector' ),
 			'product',
 			'side',
+			'high'
+		);
+
+		add_meta_box(
+			'wcp-parfum-visual-editor',
+			'Editor vizual - Parfum Find Love',
+			array( __CLASS__, 'render_visual_editor' ),
+			'product',
+			'normal',
 			'high'
 		);
 	}
@@ -77,8 +85,6 @@ class WCP_Admin {
 			return;
 		}
 
-		$template = self::get_current_template();
-
 		wp_enqueue_media();
 		wp_enqueue_style(
 			'wcp-admin',
@@ -100,7 +106,6 @@ class WCP_Admin {
 			array(
 				'templateParfum'  => WCP_Product_Meta::TEMPLATE_PARFUM,
 				'templateDefault' => WCP_Product_Meta::TEMPLATE_DEFAULT,
-				'currentTemplate' => $template,
 			)
 		);
 	}
@@ -131,23 +136,15 @@ class WCP_Admin {
 	}
 
 	/**
-	 * Render full-width visual editor below product title.
+	 * Render visual editor metabox.
 	 *
 	 * @param WP_Post $post Current post.
 	 */
-	public static function render_visual_editor_wrap( $post ) {
-		if ( ! $post || 'product' !== $post->post_type ) {
-			return;
-		}
+	public static function render_visual_editor( $post ) {
+		$data = WCP_Product_Meta::get_template_data( $post->ID );
 
-		$template = WCP_Product_Meta::get_template( $post->ID );
-		$hidden   = WCP_Product_Meta::TEMPLATE_PARFUM !== $template ? ' style="display:none;"' : '';
-		$data     = WCP_Product_Meta::get_template_data( $post->ID );
-
-		echo '<div id="wcp-visual-editor-wrap" class="wcp-visual-editor-wrap"' . $hidden . '>';
-
+		echo '<div id="wcp-visual-editor-wrap" class="wcp-visual-editor-wrap">';
 		include WCP_PLUGIN_DIR . 'templates/admin-visual-editor.php';
-
 		echo '</div>';
 	}
 

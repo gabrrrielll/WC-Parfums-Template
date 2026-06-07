@@ -6,18 +6,28 @@
 	line-height: 1.5;
 }
 
-/* Full-width visual editor below title */
-.wcp-visual-editor-wrap {
-	margin: 12px 0 20px;
-	clear: both;
-}
+/* --------------------------------------------------------------------------
+   Template visibility toggle (body class driven)
+   -------------------------------------------------------------------------- */
 
-body.wcp-edit-mode-default .wcp-visual-editor-wrap {
+/* Default: hide parfum editor */
+body.wcp-edit-mode-default #wcp-parfum-visual-editor {
 	display: none !important;
 }
 
-body.wcp-edit-mode-parfum_landing #postbox-container-2,
-body.wcp-edit-mode-parfum_landing #normal-sortables,
+/* Parfum: show editor, hide classic WooCommerce panels */
+body.wcp-edit-mode-parfum_landing #wcp-parfum-visual-editor {
+	display: block !important;
+}
+
+body.wcp-edit-mode-parfum_landing #normal-sortables .postbox {
+	display: none !important;
+}
+
+body.wcp-edit-mode-parfum_landing #wcp-parfum-visual-editor.postbox {
+	display: block !important;
+}
+
 body.wcp-edit-mode-parfum_landing #woocommerce-product-data,
 body.wcp-edit-mode-parfum_landing #postdivrich,
 body.wcp-edit-mode-parfum_landing #postexcerpt,
@@ -29,6 +39,10 @@ body.wcp-edit-mode-parfum_landing #editor {
 }
 
 /* Visual editor shell */
+.wcp-visual-editor-wrap {
+	margin: 0;
+}
+
 .wcp-visual-editor {
 	margin: 0;
 }
@@ -312,7 +326,6 @@ body.wcp-edit-mode-parfum_landing #editor {
 	object-fit: contain;
 }
 
-/* Only stack on very narrow admin viewports */
 @media (max-width: 782px) {
 	.wcp-visual-editor__toolbar {
 		grid-template-columns: 1fr;
