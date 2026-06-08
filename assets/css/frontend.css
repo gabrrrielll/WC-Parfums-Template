@@ -124,6 +124,7 @@ body.wcp-parfum-body {
 	display: flex;
 	justify-content: center;
 	min-width: 0;
+	width: 120%;
 }
 
 .wcp-arch-frame {
@@ -168,6 +169,7 @@ body.wcp-parfum-body {
 	gap: 20px;
 	max-width: none;
 	min-width: 0;
+	margin-left: 20%
 }
 
 .wcp-title-logo {
@@ -317,7 +319,7 @@ body.wcp-parfum-body {
 .wcp-note__body {
 	margin: 0;
 	font-family: var(--wcp-sans);
-	font-size: clamp(0.62rem, 1vw, 0.78rem);
+	font-size: clamp(0.92rem, 1vw, 0.88rem);
 	line-height: 1.35;
 }
 
@@ -337,14 +339,16 @@ body.wcp-parfum-body {
 }
 
 .wcp-arch-text--top {
-	border-radius: clamp(60px, 12vw, 96px) clamp(60px, 12vw, 96px) 0 0;
+	border-radius: 50% 50% 0 0;
 	padding-bottom: clamp(14px, 2.5vw, 22px);
+	height: 340px;
 }
 
 .wcp-arch-text--bottom {
-	border-radius: 0 0 clamp(60px, 12vw, 96px) clamp(60px, 12vw, 96px);
+	border-radius: 0 0 50% 50%;
 	padding-top: clamp(14px, 2.5vw, 22px);
 	justify-content: flex-end;
+	height: 340px;
 }
 
 .wcp-circle-frame {
@@ -416,7 +420,7 @@ body.wcp-parfum-body {
 	position: relative;
 	justify-self: end;
 	align-self: end;
-	width: 70%;
+	width: 90%;
 	display: flex;
 	justify-content: flex-end;
 	align-items: flex-end;
