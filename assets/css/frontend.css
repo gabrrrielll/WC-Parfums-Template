@@ -11,8 +11,8 @@
 	--wcp-layout-max: 920px;
 	--wcp-layout-gutter: clamp(12px, 3vw, 32px);
 	--wcp-layout-gap: clamp(8px, 2.5vw, 28px);
-	--wcp-col-width: min(100%, 22vw);
-	--wcp-col-max: 240px;
+	--wcp-col-width: min(100%, 28vw);
+	--wcp-col-max: 290px;
 	--wcp-serif: "Cormorant Garamond", "Times New Roman", Georgia, serif;
 	--wcp-sans: "Montserrat", "Helvetica Neue", Arial, sans-serif;
 }
@@ -510,9 +510,9 @@ body.wcp-parfum-body {
 		padding: 40px 20px;
 	}
 
-	.wcp-bottom__media {
+	/* .wcp-bottom__media {
 		justify-self: center;
-	}
+	} */
 
 	.wcp-bottom__media .wcp-arch-frame {
 		margin: 0 auto;
@@ -539,4 +539,8 @@ body.wcp-parfum-body {
 	.wcp-lifestyle-img {
 		min-height: 320px;
 	}
+}
+
+.wcp-section.wcp-bottom {
+	max-width: 100%;
 }
