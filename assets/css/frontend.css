@@ -151,12 +151,12 @@ body.wcp-parfum-body {
 	display: block;
 	width: 100%;
 	height: auto;
-	object-fit: cover;
+	object-fit: contain;
 }
 
 .wcp-hero__product-img {
 	min-height: clamp(260px, 32vw, 380px);
-	object-fit: cover;
+	object-fit: contain;
 }
 
 .wcp-hero__content {
@@ -306,11 +306,12 @@ body.wcp-parfum-body {
 
 .wcp-note__label {
 	font-family: var(--wcp-serif);
-	font-size: clamp(0.95rem, 1.6vw, 1.45rem);
+	font-size: clamp(1.5rem, 1.6vw, 1.45rem);
 	line-height: 1.1;
 	margin: 0;
 	color: var(--wcp-text);
 	flex-shrink: 0;
+	font-weight: 900;
 }
 
 .wcp-note__body {
@@ -354,18 +355,18 @@ body.wcp-parfum-body {
 	flex-shrink: 0;
 }
 
-.wcp-note--top .wcp-circle-frame,
+/* .wcp-note--top .wcp-circle-frame,
 .wcp-note--base .wcp-circle-frame {
 	aspect-ratio: 1;
 	border-radius: 50%;
-}
+} */
 
-.wcp-note--middle .wcp-circle-frame {
+/* .wcp-note--middle .wcp-circle-frame {
 	aspect-ratio: 1;
 	border: 1px solid var(--wcp-gold);
 	border-bottom: 0;
 	border-radius: clamp(60px, 12vw, 96px) clamp(60px, 12vw, 96px) 0 0;
-}
+} */
 
 .wcp-note__img {
 	width: 100%;
@@ -415,7 +416,7 @@ body.wcp-parfum-body {
 	position: relative;
 	justify-self: end;
 	align-self: end;
-	width: 100%;
+	width: 70%;
 	display: flex;
 	justify-content: flex-end;
 	align-items: flex-end;
