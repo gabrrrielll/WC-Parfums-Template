@@ -71,7 +71,7 @@ body.wcp-parfum-body {
 }
 
 .wcp-section + .wcp-section {
-	margin-top: 72px;
+	margin-top: 100px;
 }
 
 /* Decorative gold lines */
@@ -547,8 +547,12 @@ body.wcp-parfum-body {
 	.wcp-lifestyle-img {
 		min-height: 320px;
 	}
+	.wcp-bottom__media {
+		margin-right: -15%;
+	}
 }
 
 .wcp-section.wcp-bottom {
 	max-width: 100%;
+	margin-top: 0;
 }
