@@ -124,7 +124,7 @@ body.wcp-parfum-body {
 	display: flex;
 	justify-content: center;
 	min-width: 0;
-	width: 120%;
+	width: 100%;
 }
 
 .wcp-arch-frame {
@@ -169,7 +169,6 @@ body.wcp-parfum-body {
 	gap: 20px;
 	max-width: none;
 	min-width: 0;
-	margin-left: 20%
 }
 
 .wcp-title-logo {
@@ -424,6 +423,7 @@ body.wcp-parfum-body {
 	display: flex;
 	justify-content: flex-end;
 	align-items: flex-end;
+	max-width: 512px;
 }
 
 .wcp-lifestyle-img {
@@ -466,11 +466,15 @@ body.wcp-parfum-body {
 /* --------------------------------------------------------------------------
    Responsive
    -------------------------------------------------------------------------- */
-
+   @media (min-width: 961px) {
+   .wcp-hero__content {
+	margin-left: 20%
+    }
+}
 @media (max-width: 960px) {
 	.wcp-hero__grid {
 		grid-template-columns: 1fr;
-		max-width: min(100%, 280px);
+		max-width: min(100%, 380px);
 	}
 
 	.wcp-hero__media,
@@ -524,16 +528,16 @@ body.wcp-parfum-body {
 }
 
 @media (max-width: 600px) {
-	.wcp-parfum-page {
+	/* .wcp-parfum-page {
 		padding: 32px 16px 56px;
-	}
+	} */
 
 	.wcp-section + .wcp-section {
 		margin-top: 56px;
 	}
 
 	.wcp-arch-frame--tall {
-		max-width: 260px;
+		max-width: 300px;
 	}
 
 	.wcp-hero__product-img {
