@@ -14,17 +14,10 @@
 		});
 	}
 
-	function getClassicPanels() {
+	function getDescriptionEditorPanels() {
 		return $([
-			'#woocommerce-product-data',
 			'#postdivrich',
-			'#postexcerpt',
-			'#woocommerce-product-images',
-			'#product_images_container',
-			'#wp-content-wrap',
-			'#editor',
-			'#normal-sortables > .postbox:not(#wcp-parfum-visual-editor)',
-			'#advanced-sortables > .postbox'
+			'#wp-content-wrap'
 		].join(','));
 	}
 
@@ -40,7 +33,7 @@
 		document.body.setAttribute('data-wcp-template', mode);
 
 		forceDisplay($visualEditor, isParfum);
-		forceDisplay(getClassicPanels(), !isParfum);
+		forceDisplay(getDescriptionEditorPanels(), !isParfum);
 	}
 
 	function scheduleTemplateMode(template) {

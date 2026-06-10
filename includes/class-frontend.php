@@ -56,9 +56,9 @@ class WCP_Frontend {
 			return $parts;
 		}
 
-		$seo_title = get_post_meta( get_queried_object_id(), WCP_Product_Meta::META_SEO_TITLE, true );
-		if ( $seo_title ) {
-			$parts['title'] = $seo_title;
+		$product_title = get_the_title( get_queried_object_id() );
+		if ( $product_title ) {
+			$parts['title'] = $product_title;
 		}
 
 		return $parts;

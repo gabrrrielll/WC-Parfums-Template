@@ -8,9 +8,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-$fields  = WCP_Product_Meta::get_content_fields();
-$product = wc_get_product( $post->ID );
-$regular_price = $product ? $product->get_regular_price( 'edit' ) : '';
+$fields = WCP_Product_Meta::get_content_fields();
 
 $bg_url   = ! empty( $data['background_image']['url'] ) ? $data['background_image']['url'] : '';
 $bg_style = $bg_url ? 'background-image:url(' . esc_url( $bg_url ) . ');' : '';
@@ -18,12 +16,7 @@ $bg_style = $bg_url ? 'background-image:url(' . esc_url( $bg_url ) . ');' : '';
 
 <div class="wcp-visual-editor" id="wcp-visual-editor">
 	<div class="wcp-visual-editor__toolbar">
-		<?php WCP_Admin::render_field( 'seo_title', $fields['seo_title'], $data['seo_title'] ); ?>
 		<?php WCP_Admin::render_field( 'background_image', $fields['background_image'], $data['background_image'] ); ?>
-		<div class="wcp-slot wcp-slot--price">
-			<label class="wcp-slot__label" for="_regular_price">Pret produs (WooCommerce)</label>
-			<input type="text" id="_regular_price" name="_regular_price" value="<?php echo esc_attr( $regular_price ); ?>" class="wcp-slot__text widefat" placeholder="ex: 299" />
-		</div>
 	</div>
 
 	<div class="wcp-visual-canvas" id="wcp-visual-canvas" style="<?php echo esc_attr( $bg_style ); ?>">

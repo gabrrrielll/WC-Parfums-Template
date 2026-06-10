@@ -142,7 +142,7 @@ class WCP_Admin {
 
 		$template = WCP_Product_Meta::get_template( $post->ID );
 
-		echo '<p class="wcp-template-selector-desc">Alege layout-ul paginii de produs. Se afiseaza doar campurile template-ului selectat.</p>';
+		echo '<p class="wcp-template-selector-desc">Alege layout-ul paginii de produs. La template parfum se ascunde descrierea clasica si se afiseaza editorul vizual.</p>';
 		echo '<select id="wcp_template" name="wcp_template" class="widefat wcp-template-select">';
 
 		foreach ( WCP_Product_Meta::get_template_options() as $value => $label ) {

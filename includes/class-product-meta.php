@@ -53,10 +53,6 @@ class WCP_Product_Meta {
 	 */
 	public static function get_content_fields() {
 		return array(
-			'seo_title' => array(
-				'type'  => 'text',
-				'label' => 'Titlu SEO (nu se afiseaza vizual)',
-			),
 			'background_image' => array(
 				'type'  => 'image',
 				'label' => 'Fundal pagina',
@@ -256,7 +252,6 @@ class WCP_Product_Meta {
 		update_post_meta( $post_id, self::META_TEMPLATE, $template );
 
 		$text_fields = array(
-			'seo_title'          => 'sanitize_text_field',
 			'tagline'            => 'sanitize_text_field',
 			'hero_description'   => 'sanitize_textarea_field',
 			'note_top_text'      => 'sanitize_textarea_field',

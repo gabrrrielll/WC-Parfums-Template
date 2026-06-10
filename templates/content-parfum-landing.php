@@ -14,7 +14,7 @@ if ( ! empty( $data['background_image']['url'] ) ) {
 	$bg_style = 'background-image: url(' . esc_url( $data['background_image']['url'] ) . ');';
 }
 
-$seo_title = ! empty( $data['seo_title'] ) ? $data['seo_title'] : get_the_title( $product_id );
+$seo_title = get_the_title( $product_id );
 ?>
 
 <main class="wcp-parfum-page" style="<?php echo esc_attr( $bg_style ); ?>">

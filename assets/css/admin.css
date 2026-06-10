@@ -16,36 +16,14 @@ body[data-wcp-template="default"] #wcp-parfum-visual-editor {
 	display: none !important;
 }
 
-/* Parfum: show editor, hide classic WooCommerce panels */
+/* Parfum: show visual editor, hide only classic product description */
 body.wcp-edit-mode-parfum_landing #wcp-parfum-visual-editor,
 body[data-wcp-template="parfum_landing"] #wcp-parfum-visual-editor {
 	display: block !important;
 }
 
-body.wcp-edit-mode-parfum_landing #normal-sortables .postbox,
-body[data-wcp-template="parfum_landing"] #normal-sortables .postbox {
-	display: none !important;
-}
-
-body.wcp-edit-mode-parfum_landing #wcp-parfum-visual-editor.postbox,
-body[data-wcp-template="parfum_landing"] #wcp-parfum-visual-editor.postbox {
-	display: block !important;
-}
-
-body.wcp-edit-mode-parfum_landing #woocommerce-product-data,
 body.wcp-edit-mode-parfum_landing #postdivrich,
-body.wcp-edit-mode-parfum_landing #postexcerpt,
-body.wcp-edit-mode-parfum_landing #woocommerce-product-images,
-body.wcp-edit-mode-parfum_landing #product_images_container,
-body.wcp-edit-mode-parfum_landing #wp-content-wrap,
-body.wcp-edit-mode-parfum_landing #editor,
-body[data-wcp-template="parfum_landing"] #woocommerce-product-data,
-body[data-wcp-template="parfum_landing"] #postdivrich,
-body[data-wcp-template="parfum_landing"] #postexcerpt,
-body[data-wcp-template="parfum_landing"] #woocommerce-product-images,
-body[data-wcp-template="parfum_landing"] #product_images_container,
-body[data-wcp-template="parfum_landing"] #wp-content-wrap,
-body[data-wcp-template="parfum_landing"] #editor {
+body[data-wcp-template="parfum_landing"] #postdivrich {
 	display: none !important;
 }
 
@@ -60,7 +38,7 @@ body[data-wcp-template="parfum_landing"] #editor {
 
 .wcp-visual-editor__toolbar {
 	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
+	grid-template-columns: minmax(0, 1fr);
 	gap: 16px;
 	margin-bottom: 20px;
 	padding: 16px;
