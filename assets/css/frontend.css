@@ -183,7 +183,7 @@ body.wcp-parfum-body {
 	font-size: clamp(1rem, 2vw, 1.25rem);
 	font-weight: 700;
 	letter-spacing: 0.02em;
-	margin: 0;
+	margin: 0 10px;
 	line-height: 1.4;
 }
 
@@ -192,7 +192,7 @@ body.wcp-parfum-body {
 	font-size: clamp(0.95rem, 1.6vw, 1.1rem);
 	line-height: 1.35;
 	max-width: 100%;
-	margin: 0;
+	margin: 0 10px;
 }
 
 /* --------------------------------------------------------------------------
@@ -550,6 +550,12 @@ body.wcp-parfum-body {
 	.wcp-bottom__media {
 		margin-right: -15%;
 	}
+	.wcp-hero__content .wcp-add-to-cart::after {
+		display: none;
+	}
+	.wcp-btn-order {
+		margin: auto;
+	  }
 }
 
 .wcp-section.wcp-bottom {
