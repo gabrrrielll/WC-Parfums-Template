@@ -125,6 +125,42 @@ class WCP_Frontend {
 	}
 
 	/**
+	 * Plain-text product price label for CTA display.
+	 *
+	 * @param WC_Product $product Product object.
+	 * @return string
+	 */
+	public static function get_product_price_label( $product ) {
+		if ( ! $product || '' === $product->get_price() ) {
+			return '';
+		}
+
+		$price = wc_get_price_to_display( $product );
+		if ( '' === $price || null === $price ) {
+			return '';
+		}
+
+		return html_entity_decode( wp_strip_all_tags( wc_price( $price ) ), ENT_QUOTES, 'UTF-8' );
+	}
+
+	/**
+	 * Build CTA button label based on price display mode.
+	 *
+	 * @param string     $price_label   Formatted price label.
+	 * @param string     $display_mode  Price display mode.
+	 * @return string
+	 */
+	public static function get_order_button_label( $price_label, $display_mode ) {
+		$button_text = 'COMANDA ACUM';
+
+		if ( $price_label && WCP_Product_Meta::PRICE_DISPLAY_IN_BUTTON === $display_mode ) {
+			return $button_text . ' - ' . $price_label;
+		}
+
+		return $button_text;
+	}
+
+	/**
 	 * Render add to cart button markup.
 	 *
 	 * @param WC_Product $product Product object.
@@ -135,7 +171,18 @@ class WCP_Frontend {
 			return;
 		}
 
-		$button_text = 'COMANDA ACUM';
+		$display_mode = WCP_Product_Meta::get_price_display_mode( $product->get_id() );
+		$price_label  = self::get_product_price_label( $product );
+		$button_text  = self::get_order_button_label( $price_label, $display_mode );
+
+		echo '<div class="wcp-add-to-cart-block wcp-add-to-cart-block--' . esc_attr( $display_mode ) . '">';
+
+		if ( $price_label && WCP_Product_Meta::PRICE_DISPLAY_ABOVE === $display_mode ) {
+			printf(
+				'<p class="wcp-product-price">%s</p>',
+				esc_html( sprintf( 'PREȚ - %s', $price_label ) )
+			);
+		}
 
 		if ( $product->is_type( 'simple' ) ) {
 			echo '<form class="wcp-add-to-cart" method="post" action="' . esc_url( apply_filters( 'woocommerce_add_to_cart_form_action', $product->get_permalink() ) ) . '">';
@@ -146,16 +193,19 @@ class WCP_Frontend {
 				esc_html( $button_text )
 			);
 			echo '</form>';
+			echo '</div>';
 			return;
 		}
 
 		if ( $product->is_type( 'variable' ) && $product->is_purchasable() ) {
 			woocommerce_variable_add_to_cart();
+			echo '</div>';
 			return;
 		}
 
 		if ( $product->is_purchasable() ) {
 			woocommerce_template_loop_add_to_cart();
+			echo '</div>';
 			return;
 		}
 
@@ -163,5 +213,6 @@ class WCP_Frontend {
 			'<button type="button" class="wcp-btn-order" disabled>%s</button>',
 			esc_html( $button_text )
 		);
+		echo '</div>';
 	}
 }

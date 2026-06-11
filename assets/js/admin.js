@@ -142,10 +142,43 @@
 		scheduleTemplateMode($select.val());
 	}
 
+	function getWooPriceLabel() {
+		var $priceInput = $('#_regular_price');
+		if ($priceInput.length && $priceInput.val()) {
+			return $priceInput.val() + ' ' + ((window.wcpAdmin && window.wcpAdmin.currencySymbol) || 'RON');
+		}
+
+		return '150 RON';
+	}
+
+	function updatePricePreview() {
+		var mode = $('#wcp_price_display_mode').val() || 'above_button';
+		var priceLabel = getWooPriceLabel();
+		var $previews = $('[data-wcp-cta-preview]');
+
+		if (!$previews.length) {
+			return;
+		}
+
+		if (mode === 'in_button') {
+			$previews.text('COMANDA ACUM - ' + priceLabel);
+			return;
+		}
+
+		$previews.html('PRET - ' + priceLabel + '<br>COMANDA ACUM');
+	}
+
+	function bindPricePreview() {
+		$(document).on('change', '#wcp_price_display_mode', updatePricePreview);
+		$(document).on('input change', '#_regular_price', updatePricePreview);
+		updatePricePreview();
+	}
+
 	function init() {
 		bindImageFields();
 		initTemplateToggle();
 		updateBackgroundPreview();
+		bindPricePreview();
 	}
 
 	$(init);

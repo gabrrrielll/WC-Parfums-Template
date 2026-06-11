@@ -103,8 +103,9 @@ class WCP_Admin {
 			'wcp-admin',
 			'wcpAdmin',
 			array(
-				'templateParfum'  => WCP_Product_Meta::TEMPLATE_PARFUM,
-				'templateDefault' => WCP_Product_Meta::TEMPLATE_DEFAULT,
+				'templateParfum'   => WCP_Product_Meta::TEMPLATE_PARFUM,
+				'templateDefault'  => WCP_Product_Meta::TEMPLATE_DEFAULT,
+				'currencySymbol'   => function_exists( 'get_woocommerce_currency_symbol' ) ? get_woocommerce_currency_symbol() : 'RON',
 			)
 		);
 
@@ -202,6 +203,23 @@ class WCP_Admin {
 
 			case 'image':
 				self::render_image_field( $name, $value );
+				break;
+
+			case 'select':
+				$options = isset( $field['options'] ) && is_array( $field['options'] ) ? $field['options'] : array();
+				printf(
+					'<select id="%1$s" name="%1$s" class="wcp-slot__select widefat">',
+					esc_attr( $name )
+				);
+				foreach ( $options as $option_value => $option_label ) {
+					printf(
+						'<option value="%1$s" %2$s>%3$s</option>',
+						esc_attr( $option_value ),
+						selected( $value, $option_value, false ),
+						esc_html( $option_label )
+					);
+				}
+				echo '</select>';
 				break;
 		}
 

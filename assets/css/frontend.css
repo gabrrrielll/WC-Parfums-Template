@@ -199,19 +199,44 @@ body.wcp-parfum-body {
    Add to cart button
    -------------------------------------------------------------------------- */
 
+.wcp-add-to-cart-block {
+	width: 100%;
+}
+
+.wcp-product-price {
+	margin: 0;
+	font-family: var(--wcp-sans);
+	font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+	font-weight: 700;
+	line-height: 1.35;
+	color: var(--wcp-text);
+}
+
+.wcp-hero__content .wcp-add-to-cart-block {
+	margin-top: 36px;
+}
+
+.wcp-hero__content .wcp-add-to-cart-block--above_button .wcp-product-price {
+	margin-bottom: 16px;
+}
+
+.wcp-bottom__content .wcp-add-to-cart-block--above_button .wcp-product-price {
+	margin-bottom: 12px;
+}
+
 .wcp-add-to-cart {
 	margin: 8px 0 0;
 }
 
-.wcp-hero__content .wcp-add-to-cart {
+.wcp-hero__content .wcp-add-to-cart-block .wcp-add-to-cart {
 	display: flex;
 	align-items: center;
 	gap: 34px;
 	width: 100%;
-	margin-top: 36px;
+	margin-top: 0;
 }
 
-.wcp-hero__content .wcp-add-to-cart::after {
+.wcp-hero__content .wcp-add-to-cart-block .wcp-add-to-cart::after {
 	content: "";
 	display: block;
 	flex: 1 1 auto;
@@ -550,7 +575,7 @@ body.wcp-parfum-body {
 	.wcp-bottom__media {
 		margin-right: -15%;
 	}
-	.wcp-hero__content .wcp-add-to-cart::after {
+	.wcp-hero__content .wcp-add-to-cart-block .wcp-add-to-cart::after {
 		display: none;
 	}
 	.wcp-btn-order {

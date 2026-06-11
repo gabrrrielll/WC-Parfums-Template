@@ -16,7 +16,14 @@ $bg_style = $bg_url ? 'background-image:url(' . esc_url( $bg_url ) . ');' : '';
 
 <div class="wcp-visual-editor" id="wcp-visual-editor">
 	<div class="wcp-visual-editor__toolbar">
-		<?php WCP_Admin::render_field( 'background_image', $fields['background_image'], $data['background_image'] ); ?>
+		<?php
+		WCP_Admin::render_field(
+			'price_display_mode',
+			$fields['price_display_mode'],
+			WCP_Product_Meta::get_price_display_mode( $post->ID )
+		);
+		WCP_Admin::render_field( 'background_image', $fields['background_image'], $data['background_image'] );
+		?>
 	</div>
 
 	<div class="wcp-visual-canvas" id="wcp-visual-canvas" style="<?php echo esc_attr( $bg_style ); ?>">
@@ -35,7 +42,7 @@ $bg_style = $bg_url ? 'background-image:url(' . esc_url( $bg_url ) . ');' : '';
 					<?php WCP_Admin::render_field( 'title_logo_image', $fields['title_logo_image'], $data['title_logo_image'] ); ?>
 					<?php WCP_Admin::render_field( 'tagline', $fields['tagline'], $data['tagline'] ); ?>
 					<?php WCP_Admin::render_field( 'hero_description', $fields['hero_description'], $data['hero_description'] ); ?>
-					<div class="wcp-visual-cta wcp-visual-cta--static">COMANDA ACUM (automat din WooCommerce)</div>
+					<div class="wcp-visual-cta wcp-visual-cta--static" data-wcp-cta-preview>COMANDA ACUM</div>
 				</div>
 			</div>
 		</section>
@@ -80,7 +87,7 @@ $bg_style = $bg_url ? 'background-image:url(' . esc_url( $bg_url ) . ');' : '';
 			<div class="wcp-visual-bottom__grid">
 				<div class="wcp-visual-bottom__content">
 					<?php WCP_Admin::render_field( 'brand_image', $fields['brand_image'], $data['brand_image'] ); ?>
-					<div class="wcp-visual-cta wcp-visual-cta--static">COMANDA ACUM (automat din WooCommerce)</div>
+					<div class="wcp-visual-cta wcp-visual-cta--static" data-wcp-cta-preview>COMANDA ACUM</div>
 				</div>
 
 				<div class="wcp-visual-bottom__media">

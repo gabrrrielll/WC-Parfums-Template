@@ -22,9 +22,13 @@ class WCP_Product_Meta {
 	const META_NOTE_BASE_TEXT = '_wcp_note_base_text';
 	const META_BRAND_IMAGE    = '_wcp_brand_image';
 	const META_LIFESTYLE_IMG  = '_wcp_lifestyle_image';
+	const META_PRICE_DISPLAY  = '_wcp_price_display_mode';
 
 	const TEMPLATE_DEFAULT = 'default';
 	const TEMPLATE_PARFUM  = 'parfum_landing';
+
+	const PRICE_DISPLAY_ABOVE    = 'above_button';
+	const PRICE_DISPLAY_IN_BUTTON = 'in_button';
 
 	/**
 	 * Register hooks.
@@ -47,12 +51,29 @@ class WCP_Product_Meta {
 	}
 
 	/**
+	 * Price display mode options for the visual editor.
+	 *
+	 * @return array
+	 */
+	public static function get_price_display_options() {
+		return array(
+			self::PRICE_DISPLAY_ABOVE     => 'Clasic - deasupra butonului',
+			self::PRICE_DISPLAY_IN_BUTTON => 'Inclus in butonul COMANDA ACUM',
+		);
+	}
+
+	/**
 	 * Content field definitions for the visual editor (excludes template).
 	 *
 	 * @return array
 	 */
 	public static function get_content_fields() {
 		return array(
+			'price_display_mode' => array(
+				'type'    => 'select',
+				'label'   => 'Afisare pret (din WooCommerce)',
+				'options' => self::get_price_display_options(),
+			),
 			'background_image' => array(
 				'type'  => 'image',
 				'label' => 'Fundal pagina',
@@ -149,6 +170,7 @@ class WCP_Product_Meta {
 			'note_base_text'     => self::META_NOTE_BASE_TEXT,
 			'brand_image'        => self::META_BRAND_IMAGE,
 			'lifestyle_image'    => self::META_LIFESTYLE_IMG,
+			'price_display_mode' => self::META_PRICE_DISPLAY,
 		);
 
 		return isset( $map[ $field ] ) ? $map[ $field ] : '_wcp_' . $field;
@@ -176,6 +198,20 @@ class WCP_Product_Meta {
 		return in_array( $template, array( self::TEMPLATE_DEFAULT, self::TEMPLATE_PARFUM ), true )
 			? $template
 			: self::TEMPLATE_DEFAULT;
+	}
+
+	/**
+	 * Get saved price display mode for a product.
+	 *
+	 * @param int $product_id Product ID.
+	 * @return string
+	 */
+	public static function get_price_display_mode( $product_id ) {
+		$mode = get_post_meta( $product_id, self::META_PRICE_DISPLAY, true );
+
+		return in_array( $mode, array( self::PRICE_DISPLAY_ABOVE, self::PRICE_DISPLAY_IN_BUTTON ), true )
+			? $mode
+			: self::PRICE_DISPLAY_ABOVE;
 	}
 
 	/**
@@ -282,6 +318,15 @@ class WCP_Product_Meta {
 			if ( isset( $_POST[ $key ] ) ) {
 				update_post_meta( $post_id, self::meta_key( $field ), absint( $_POST[ $key ] ) );
 			}
+		}
+
+		$key = 'wcp_price_display_mode';
+		if ( isset( $_POST[ $key ] ) ) {
+			$mode = sanitize_text_field( wp_unslash( $_POST[ $key ] ) );
+			if ( ! in_array( $mode, array( self::PRICE_DISPLAY_ABOVE, self::PRICE_DISPLAY_IN_BUTTON ), true ) ) {
+				$mode = self::PRICE_DISPLAY_ABOVE;
+			}
+			update_post_meta( $post_id, self::META_PRICE_DISPLAY, $mode );
 		}
 	}
 }
