@@ -123,7 +123,7 @@ body.wcp-parfum-body {
 	grid-column: 1;
 	display: flex;
 	justify-content: center;
-	min-width: 0;
+	min-width: 330px;
 	width: 100%;
 }
 
@@ -166,7 +166,7 @@ body.wcp-parfum-body {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: 20px;
+	gap: 10px;
 	max-width: none;
 	min-width: 0;
 }
