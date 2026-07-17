@@ -692,28 +692,6 @@ body.wcp-parfum-body {
 	color: var(--wcp-text);
 }
 
-.wcp-discovery-page .wcp-arch-frame--pill {
-	border-radius: 999px;
-	overflow: hidden;
-}
-
-.wcp-discovery-page .wcp-decor--circle {
-	display: block;
-	position: absolute;
-	right: -8%;
-	bottom: -6%;
-	width: min(42%, 260px);
-	aspect-ratio: 1;
-	border: 1px solid var(--wcp-gold);
-	border-radius: 50%;
-	pointer-events: none;
-	z-index: 0;
-}
-
-.wcp-discovery-page .wcp-bottom__media .wcp-arch-frame {
-	z-index: 1;
-}
-
 @media (max-width: 960px) {
 	.wcp-discovery-scents__grid {
 		grid-template-columns: repeat(2, minmax(0, 1fr));

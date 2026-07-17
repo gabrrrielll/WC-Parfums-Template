@@ -108,10 +108,9 @@ $middle_title = ! empty( $data['kit_middle_title'] ) ? $data['kit_middle_title']
 			</div>
 
 			<div class="wcp-bottom__media">
-				<div class="wcp-arch-frame wcp-arch-frame--wide wcp-arch-frame--pill">
+				<div class="wcp-arch-frame wcp-arch-frame--wide">
 					<?php WCP_Frontend::render_image( $data['lifestyle_image'], 'wcp-lifestyle-img', $page_title ); ?>
 				</div>
-				<div class="wcp-decor wcp-decor--circle" aria-hidden="true"></div>
 			</div>
 		</div>
 	</section>
