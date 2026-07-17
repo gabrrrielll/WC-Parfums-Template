@@ -1,8 +1,9 @@
 (function ($) {
 	'use strict';
 
-	var TEMPLATE_PARFUM  = (window.wcpAdmin && window.wcpAdmin.templateParfum)  || 'parfum_landing';
-	var TEMPLATE_DEFAULT = (window.wcpAdmin && window.wcpAdmin.templateDefault) || 'default';
+	var TEMPLATE_PARFUM    = (window.wcpAdmin && window.wcpAdmin.templateParfum) || 'parfum_landing';
+	var TEMPLATE_DISCOVERY = (window.wcpAdmin && window.wcpAdmin.templateDiscovery) || 'discovery_kit';
+	var TEMPLATE_DEFAULT   = (window.wcpAdmin && window.wcpAdmin.templateDefault) || 'default';
 
 	function forceDisplay($elements, display) {
 		$elements.each(function () {
@@ -21,19 +22,40 @@
 		].join(','));
 	}
 
+	function setEditorInputsEnabled($editor, enabled) {
+		if (!$editor.length) {
+			return;
+		}
+
+		$editor.find(':input').prop('disabled', !enabled);
+	}
+
 	function setTemplateMode(template) {
-		var mode = template === TEMPLATE_PARFUM ? TEMPLATE_PARFUM : TEMPLATE_DEFAULT;
+		var mode = TEMPLATE_DEFAULT;
+		if (template === TEMPLATE_PARFUM) {
+			mode = TEMPLATE_PARFUM;
+		} else if (template === TEMPLATE_DISCOVERY) {
+			mode = TEMPLATE_DISCOVERY;
+		}
+
 		var isParfum = mode === TEMPLATE_PARFUM;
-		var $visualEditor = $('#wcp-parfum-visual-editor');
+		var isDiscovery = mode === TEMPLATE_DISCOVERY;
+		var isCustom = isParfum || isDiscovery;
+		var $parfumEditor = $('#wcp-parfum-visual-editor');
+		var $discoveryEditor = $('#wcp-discovery-visual-editor');
 
 		$('body')
-			.removeClass('wcp-edit-mode-default wcp-edit-mode-parfum_landing')
+			.removeClass('wcp-edit-mode-default wcp-edit-mode-parfum_landing wcp-edit-mode-discovery_kit')
 			.addClass('wcp-edit-mode-' + mode);
 
 		document.body.setAttribute('data-wcp-template', mode);
 
-		forceDisplay($visualEditor, isParfum);
-		forceDisplay(getDescriptionEditorPanels(), !isParfum);
+		forceDisplay($parfumEditor, isParfum);
+		forceDisplay($discoveryEditor, isDiscovery);
+		forceDisplay(getDescriptionEditorPanels(), !isCustom);
+
+		setEditorInputsEnabled($parfumEditor, isParfum);
+		setEditorInputsEnabled($discoveryEditor, isDiscovery);
 	}
 
 	function scheduleTemplateMode(template) {
@@ -53,7 +75,11 @@
 		}
 
 		var value = $select.val();
-		return value === TEMPLATE_PARFUM ? TEMPLATE_PARFUM : TEMPLATE_DEFAULT;
+		if (value === TEMPLATE_PARFUM || value === TEMPLATE_DISCOVERY) {
+			return value;
+		}
+
+		return TEMPLATE_DEFAULT;
 	}
 
 	function openMediaFrame($input, $preview, $remove) {
@@ -80,12 +106,10 @@
 		frame.open();
 	}
 
-	function updateBackgroundPreview() {
-		var $input = $('#wcp_background_image');
-		var $canvas = $('#wcp-visual-canvas');
-
+	function updateBackgroundPreviewForInput($input) {
+		var $canvas = $input.closest('.wcp-visual-editor').find('.wcp-visual-canvas');
 		if (!$canvas.length) {
-			return;
+			$canvas = $('.wcp-visual-canvas');
 		}
 
 		var attachmentId = parseInt($input.val(), 10);
@@ -100,6 +124,12 @@
 			if (url) {
 				$canvas.css('background-image', 'url(' + url + ')');
 			}
+		});
+	}
+
+	function updateBackgroundPreview() {
+		$('input[name="wcp_background_image"]:not(:disabled)').each(function () {
+			updateBackgroundPreviewForInput($(this));
 		});
 	}
 
@@ -124,7 +154,9 @@
 			$(this).addClass('hidden');
 		});
 
-		$(document).on('change', '#wcp_background_image', updateBackgroundPreview);
+		$(document).on('change', 'input[name="wcp_background_image"]', function () {
+			updateBackgroundPreviewForInput($(this));
+		});
 	}
 
 	function initTemplateToggle() {
@@ -152,7 +184,8 @@
 	}
 
 	function updatePricePreview() {
-		var mode = $('#wcp_price_display_mode').val() || 'above_button';
+		var $modeSelect = $('select[name="wcp_price_display_mode"]:not(:disabled)').first();
+		var mode = $modeSelect.length ? $modeSelect.val() : 'above_button';
 		var priceLabel = getWooPriceLabel();
 		var $previews = $('[data-wcp-cta-preview]');
 
@@ -169,7 +202,7 @@
 	}
 
 	function bindPricePreview() {
-		$(document).on('change', '#wcp_price_display_mode', updatePricePreview);
+		$(document).on('change', 'select[name="wcp_price_display_mode"]', updatePricePreview);
 		$(document).on('input change', '#_regular_price', updatePricePreview);
 		updatePricePreview();
 	}

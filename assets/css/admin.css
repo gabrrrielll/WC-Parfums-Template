@@ -10,20 +10,41 @@
    Template visibility toggle (body class driven)
    -------------------------------------------------------------------------- */
 
-/* Default: hide parfum editor */
+/* Default: hide custom editors */
 body.wcp-edit-mode-default #wcp-parfum-visual-editor,
-body[data-wcp-template="default"] #wcp-parfum-visual-editor {
+body.wcp-edit-mode-default #wcp-discovery-visual-editor,
+body[data-wcp-template="default"] #wcp-parfum-visual-editor,
+body[data-wcp-template="default"] #wcp-discovery-visual-editor {
 	display: none !important;
 }
 
-/* Parfum: show visual editor, hide only classic product description */
+/* Parfum: show parfum editor */
 body.wcp-edit-mode-parfum_landing #wcp-parfum-visual-editor,
 body[data-wcp-template="parfum_landing"] #wcp-parfum-visual-editor {
 	display: block !important;
 }
 
+body.wcp-edit-mode-parfum_landing #wcp-discovery-visual-editor,
+body[data-wcp-template="parfum_landing"] #wcp-discovery-visual-editor {
+	display: none !important;
+}
+
+/* Discovery: show discovery editor */
+body.wcp-edit-mode-discovery_kit #wcp-discovery-visual-editor,
+body[data-wcp-template="discovery_kit"] #wcp-discovery-visual-editor {
+	display: block !important;
+}
+
+body.wcp-edit-mode-discovery_kit #wcp-parfum-visual-editor,
+body[data-wcp-template="discovery_kit"] #wcp-parfum-visual-editor {
+	display: none !important;
+}
+
+/* Custom templates: hide classic product description */
 body.wcp-edit-mode-parfum_landing #postdivrich,
-body[data-wcp-template="parfum_landing"] #postdivrich {
+body.wcp-edit-mode-discovery_kit #postdivrich,
+body[data-wcp-template="parfum_landing"] #postdivrich,
+body[data-wcp-template="discovery_kit"] #postdivrich {
 	display: none !important;
 }
 
@@ -284,6 +305,42 @@ body[data-wcp-template="parfum_landing"] #postdivrich {
 	justify-self: end;
 }
 
+/* Discovery kit admin layout */
+.wcp-visual-scent-list {
+	display: grid;
+	gap: 8px;
+	width: 100%;
+}
+
+.wcp-visual-scents__grid {
+	display: grid !important;
+	grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+	gap: 12px;
+	align-items: end;
+	margin-bottom: 16px;
+}
+
+.wcp-visual-scent {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	min-width: 0;
+}
+
+.wcp-visual-scent--1,
+.wcp-visual-scent--5 {
+	transform: translateY(18px);
+}
+
+.wcp-visual-scent--2,
+.wcp-visual-scent--4 {
+	transform: translateY(8px);
+}
+
+.wcp-visual-scent--3 {
+	transform: translateY(0);
+}
+
 @media (max-width: 782px) {
 	.wcp-visual-editor__toolbar {
 		grid-template-columns: 1fr;
@@ -295,8 +352,17 @@ body[data-wcp-template="parfum_landing"] #postdivrich {
 
 	.wcp-visual-hero__grid,
 	.wcp-visual-bottom__grid,
-	.wcp-visual-notes__grid {
+	.wcp-visual-notes__grid,
+	.wcp-visual-scents__grid {
 		grid-template-columns: 1fr !important;
+	}
+
+	.wcp-visual-scent--1,
+	.wcp-visual-scent--2,
+	.wcp-visual-scent--3,
+	.wcp-visual-scent--4,
+	.wcp-visual-scent--5 {
+		transform: none;
 	}
 
 	.wcp-visual-bottom__media {

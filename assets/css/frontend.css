@@ -587,3 +587,166 @@ body.wcp-parfum-body {
 	max-width: 100%;
 	margin-top: 0;
 }
+
+/* --------------------------------------------------------------------------
+   Discovery Kit template
+   -------------------------------------------------------------------------- */
+
+.wcp-discovery-page .wcp-kit-title {
+	font-family: var(--wcp-sans);
+	font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+	font-weight: 700;
+	line-height: 1.3;
+	margin: 0;
+	color: var(--wcp-text);
+}
+
+.wcp-discovery-page .wcp-scent-bullets {
+	list-style: disc;
+	margin: 4px 0 0;
+	padding-left: 1.25em;
+	font-family: var(--wcp-sans);
+	font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+	line-height: 1.55;
+	color: var(--wcp-text);
+}
+
+.wcp-discovery-page .wcp-scent-bullets li {
+	margin: 0 0 2px;
+}
+
+.wcp-discovery-page .wcp-kit-promo {
+	font-family: var(--wcp-sans);
+	font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+	font-weight: 600;
+	line-height: 1.4;
+	margin: 4px 0 0;
+	color: var(--wcp-text);
+}
+
+.wcp-discovery-scents {
+	text-align: center;
+	padding: 0 var(--wcp-layout-gutter);
+}
+
+.wcp-discovery-scents__grid {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	column-gap: clamp(8px, 1.8vw, 20px);
+	align-items: end;
+	width: 100%;
+	max-width: min(100%, 980px);
+	margin: 0 auto;
+}
+
+.wcp-discovery-scent {
+	display: flex;
+	justify-content: center;
+	min-width: 0;
+}
+
+.wcp-discovery-scent--1,
+.wcp-discovery-scent--5 {
+	transform: translateY(clamp(18px, 3.5vw, 42px));
+}
+
+.wcp-discovery-scent--2,
+.wcp-discovery-scent--4 {
+	transform: translateY(clamp(8px, 1.8vw, 22px));
+}
+
+.wcp-discovery-scent--3 {
+	transform: translateY(0);
+}
+
+.wcp-discovery-scent__link {
+	display: block;
+	width: 100%;
+	max-width: 180px;
+	text-decoration: none;
+}
+
+.wcp-discovery-scent__image {
+	width: min(100%, 22vw);
+	max-width: 180px;
+	aspect-ratio: 1;
+	border-radius: 50%;
+	overflow: hidden;
+	margin: 0 auto;
+	background: #fff;
+}
+
+.wcp-discovery-scent__img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.wcp-discovery-scents__title {
+	font-family: var(--wcp-serif);
+	font-size: clamp(2rem, 4.2vw, 3.6rem);
+	font-weight: 400;
+	line-height: 1.1;
+	margin: clamp(28px, 4vw, 48px) 0 0;
+	color: var(--wcp-text);
+}
+
+.wcp-discovery-page .wcp-arch-frame--pill {
+	border-radius: 999px;
+	overflow: hidden;
+}
+
+.wcp-discovery-page .wcp-decor--circle {
+	display: block;
+	position: absolute;
+	right: -8%;
+	bottom: -6%;
+	width: min(42%, 260px);
+	aspect-ratio: 1;
+	border: 1px solid var(--wcp-gold);
+	border-radius: 50%;
+	pointer-events: none;
+	z-index: 0;
+}
+
+.wcp-discovery-page .wcp-bottom__media .wcp-arch-frame {
+	z-index: 1;
+}
+
+@media (max-width: 960px) {
+	.wcp-discovery-scents__grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		row-gap: 28px;
+		max-width: 420px;
+	}
+
+	.wcp-discovery-scent--1,
+	.wcp-discovery-scent--2,
+	.wcp-discovery-scent--3,
+	.wcp-discovery-scent--4,
+	.wcp-discovery-scent--5 {
+		transform: none;
+	}
+
+	.wcp-discovery-scent:last-child {
+		grid-column: 1 / -1;
+		justify-self: center;
+	}
+
+	.wcp-discovery-scent__image {
+		width: min(100%, 42vw);
+		max-width: 160px;
+	}
+}
+
+@media (max-width: 600px) {
+	.wcp-discovery-scents__grid {
+		grid-template-columns: 1fr;
+		max-width: 220px;
+	}
+
+	.wcp-discovery-scent:last-child {
+		grid-column: auto;
+	}
+}

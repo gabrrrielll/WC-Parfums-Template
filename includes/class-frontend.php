@@ -18,6 +18,19 @@ class WCP_Frontend {
 	}
 
 	/**
+	 * Whether current request uses a custom Find Love landing template.
+	 *
+	 * @return bool
+	 */
+	public static function is_custom_landing_product() {
+		if ( ! is_singular( 'product' ) ) {
+			return false;
+		}
+
+		return WCP_Product_Meta::uses_custom_template( get_queried_object_id() );
+	}
+
+	/**
 	 * Whether current request is a parfum template product.
 	 *
 	 * @return bool
@@ -31,28 +44,46 @@ class WCP_Frontend {
 	}
 
 	/**
-	 * Load minimal full-page template without theme header/footer.
+	 * Whether current request is a discovery kit product.
+	 *
+	 * @return bool
+	 */
+	public static function is_discovery_product() {
+		if ( ! is_singular( 'product' ) ) {
+			return false;
+		}
+
+		return WCP_Product_Meta::uses_discovery_template( get_queried_object_id() );
+	}
+
+	/**
+	 * Load custom product landing template.
 	 *
 	 * @param string $template Current template path.
 	 * @return string
 	 */
 	public static function template_include( $template ) {
-		if ( ! self::is_parfum_product() ) {
+		if ( ! self::is_custom_landing_product() ) {
 			return $template;
 		}
 
-		$plugin_template = WCP_PLUGIN_DIR . 'templates/single-product-parfum.php';
+		if ( self::is_discovery_product() ) {
+			$plugin_template = WCP_PLUGIN_DIR . 'templates/single-product-discovery.php';
+		} else {
+			$plugin_template = WCP_PLUGIN_DIR . 'templates/single-product-parfum.php';
+		}
+
 		return file_exists( $plugin_template ) ? $plugin_template : $template;
 	}
 
 	/**
-	 * Override document title with SEO field.
+	 * Override document title with product title.
 	 *
 	 * @param array $parts Title parts.
 	 * @return array
 	 */
 	public static function document_title_parts( $parts ) {
-		if ( ! self::is_parfum_product() ) {
+		if ( ! self::is_custom_landing_product() ) {
 			return $parts;
 		}
 
@@ -71,8 +102,12 @@ class WCP_Frontend {
 	 * @return array
 	 */
 	public static function body_class( $classes ) {
-		if ( self::is_parfum_product() ) {
+		if ( self::is_custom_landing_product() ) {
 			$classes[] = 'wcp-parfum-body';
+		}
+
+		if ( self::is_discovery_product() ) {
+			$classes[] = 'wcp-discovery-body';
 		}
 
 		return $classes;
@@ -82,7 +117,7 @@ class WCP_Frontend {
 	 * Enqueue frontend styles.
 	 */
 	public static function enqueue_assets() {
-		if ( ! self::is_parfum_product() ) {
+		if ( ! self::is_custom_landing_product() ) {
 			return;
 		}
 

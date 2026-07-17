@@ -37,6 +37,15 @@ class WCP_Admin {
 			'normal',
 			'high'
 		);
+
+		add_meta_box(
+			'wcp-discovery-visual-editor',
+			'Editor vizual - 5 Sirene Discovery Kit',
+			array( __CLASS__, 'render_discovery_editor' ),
+			'product',
+			'normal',
+			'high'
+		);
 	}
 
 	/**
@@ -103,9 +112,10 @@ class WCP_Admin {
 			'wcp-admin',
 			'wcpAdmin',
 			array(
-				'templateParfum'   => WCP_Product_Meta::TEMPLATE_PARFUM,
-				'templateDefault'  => WCP_Product_Meta::TEMPLATE_DEFAULT,
-				'currencySymbol'   => function_exists( 'get_woocommerce_currency_symbol' ) ? get_woocommerce_currency_symbol() : 'RON',
+				'templateParfum'    => WCP_Product_Meta::TEMPLATE_PARFUM,
+				'templateDiscovery' => WCP_Product_Meta::TEMPLATE_DISCOVERY,
+				'templateDefault'   => WCP_Product_Meta::TEMPLATE_DEFAULT,
+				'currencySymbol'    => function_exists( 'get_woocommerce_currency_symbol' ) ? get_woocommerce_currency_symbol() : 'RON',
 			)
 		);
 
@@ -143,7 +153,7 @@ class WCP_Admin {
 
 		$template = WCP_Product_Meta::get_template( $post->ID );
 
-		echo '<p class="wcp-template-selector-desc">Alege layout-ul paginii de produs. La template parfum se ascunde descrierea clasica si se afiseaza editorul vizual.</p>';
+		echo '<p class="wcp-template-selector-desc">Alege layout-ul paginii de produs. La template-urile Find Love se ascunde descrierea clasica si se afiseaza editorul vizual aferent.</p>';
 		echo '<select id="wcp_template" name="wcp_template" class="widefat wcp-template-select">';
 
 		foreach ( WCP_Product_Meta::get_template_options() as $value => $label ) {
@@ -159,7 +169,7 @@ class WCP_Admin {
 	}
 
 	/**
-	 * Render visual editor metabox.
+	 * Render parfum visual editor metabox.
 	 *
 	 * @param WP_Post $post Current post.
 	 */
@@ -168,6 +178,19 @@ class WCP_Admin {
 
 		echo '<div id="wcp-visual-editor-wrap" class="wcp-visual-editor-wrap">';
 		include WCP_PLUGIN_DIR . 'templates/admin-visual-editor.php';
+		echo '</div>';
+	}
+
+	/**
+	 * Render discovery kit visual editor metabox.
+	 *
+	 * @param WP_Post $post Current post.
+	 */
+	public static function render_discovery_editor( $post ) {
+		$data = WCP_Product_Meta::get_template_data( $post->ID );
+
+		echo '<div id="wcp-discovery-editor-wrap" class="wcp-visual-editor-wrap">';
+		include WCP_PLUGIN_DIR . 'templates/admin-discovery-editor.php';
 		echo '</div>';
 	}
 
@@ -187,9 +210,10 @@ class WCP_Admin {
 		switch ( $field['type'] ) {
 			case 'text':
 				printf(
-					'<input type="text" id="%1$s" name="%1$s" value="%2$s" class="wcp-slot__text widefat" />',
+					'<input type="text" id="%1$s" name="%1$s" value="%2$s" class="wcp-slot__text widefat" placeholder="%3$s" />',
 					esc_attr( $name ),
-					esc_attr( is_string( $value ) ? $value : '' )
+					esc_attr( is_string( $value ) ? $value : '' ),
+					esc_attr( isset( $field['placeholder'] ) ? $field['placeholder'] : '' )
 				);
 				break;
 
@@ -220,6 +244,23 @@ class WCP_Admin {
 					);
 				}
 				echo '</select>';
+				break;
+
+			case 'product':
+				$product_id = absint( $value );
+				$placeholder = isset( $field['placeholder'] ) ? $field['placeholder'] : '';
+				printf(
+					'<input type="number" min="0" step="1" id="%1$s" name="%1$s" value="%2$s" class="wcp-slot__text widefat" placeholder="%3$s" />',
+					esc_attr( $name ),
+					$product_id ? esc_attr( (string) $product_id ) : '',
+					esc_attr( $placeholder ? $placeholder : 'ID produs WooCommerce' )
+				);
+				if ( $product_id ) {
+					$linked = get_the_title( $product_id );
+					if ( $linked ) {
+						echo '<p class="description">' . esc_html( $linked ) . '</p>';
+					}
+				}
 				break;
 		}
 
