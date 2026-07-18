@@ -329,16 +329,16 @@ body[data-wcp-template="discovery_kit"] #postdivrich {
 
 .wcp-visual-scent--1,
 .wcp-visual-scent--5 {
-	transform: translateY(18px);
+	transform: translateY(48px);
 }
 
 .wcp-visual-scent--2,
 .wcp-visual-scent--4 {
-	transform: translateY(8px);
+	transform: translateY(22px);
 }
 
 .wcp-visual-scent--3 {
-	transform: translateY(0);
+	transform: translateY(-16px);
 }
 
 @media (max-width: 782px) {

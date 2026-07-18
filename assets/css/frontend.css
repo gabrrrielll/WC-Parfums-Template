@@ -113,7 +113,7 @@ body.wcp-parfum-body {
 	grid-template-columns: repeat(3, minmax(0, 1fr));
 	column-gap: var(--wcp-layout-gap);
 	row-gap: 48px;
-	align-items: center;
+	align-items: stretch;
 	width: 100%;
 	max-width: min(100%, var(--wcp-layout-max));
 	margin: 0 auto;
@@ -123,8 +123,10 @@ body.wcp-parfum-body {
 	grid-column: 1;
 	display: flex;
 	justify-content: center;
-	min-width: 330px;
+	align-self: stretch;
+	min-width: 0;
 	width: 100%;
+	height: 100%;
 }
 
 .wcp-arch-frame {
@@ -137,8 +139,11 @@ body.wcp-parfum-body {
 	border-radius: 0;
 	padding: 0;
 	width: 100%;
-	max-width: 130%;
-	margin: 0 auto;
+	max-width: none;
+	margin: 0;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 .wcp-arch-frame--wide {
@@ -156,8 +161,12 @@ body.wcp-parfum-body {
 }
 
 .wcp-hero__product-img {
-	min-height: clamp(260px, 32vw, 380px);
-	object-fit: contain;
+	flex: 1 1 auto;
+	width: 100%;
+	height: 100%;
+	min-height: 0;
+	object-fit: cover;
+	object-position: center;
 }
 
 .wcp-hero__content {
@@ -500,6 +509,7 @@ body.wcp-parfum-body {
 	.wcp-hero__grid {
 		grid-template-columns: 1fr;
 		max-width: min(100%, 380px);
+		align-items: start;
 	}
 
 	.wcp-hero__media,
@@ -509,6 +519,19 @@ body.wcp-parfum-body {
 
 	.wcp-hero__media {
 		order: -1;
+		height: auto;
+	}
+
+	.wcp-arch-frame--tall {
+		height: auto;
+		max-width: 300px;
+		margin: 0 auto;
+	}
+
+	.wcp-hero__product-img {
+		height: auto;
+		min-height: clamp(260px, 55vw, 360px);
+		object-fit: contain;
 	}
 
 	.wcp-notes__grid {
@@ -647,16 +670,16 @@ body.wcp-parfum-body {
 
 .wcp-discovery-scent--1,
 .wcp-discovery-scent--5 {
-	transform: translateY(clamp(18px, 3.5vw, 42px));
+	transform: translateY(clamp(48px, 8vw, 110px));
 }
 
 .wcp-discovery-scent--2,
 .wcp-discovery-scent--4 {
-	transform: translateY(clamp(8px, 1.8vw, 22px));
+	transform: translateY(clamp(22px, 4vw, 52px));
 }
 
 .wcp-discovery-scent--3 {
-	transform: translateY(0);
+	transform: translateY(clamp(-16px, -2.5vw, -36px));
 }
 
 .wcp-discovery-scent__link {
