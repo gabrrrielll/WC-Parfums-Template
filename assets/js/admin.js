@@ -16,10 +16,23 @@
 	}
 
 	function getDescriptionEditorPanels() {
-		return $([
-			'#postdivrich',
-			'#wp-content-wrap'
-		].join(','));
+		return $('#postdivrich');
+	}
+
+	function restoreStandardPostboxes() {
+		$('#poststuff .postbox').each(function () {
+			var id = this.id || '';
+			if (id === 'wcp-parfum-visual-editor' || id === 'wcp-discovery-visual-editor') {
+				return;
+			}
+
+			this.style.removeProperty('display');
+		});
+
+		forceDisplay(getDescriptionEditorPanels(), true);
+		$('#wp-content-wrap').each(function () {
+			this.style.removeProperty('display');
+		});
 	}
 
 	function setEditorInputsEnabled($editor, enabled) {
@@ -28,6 +41,33 @@
 		}
 
 		$editor.find(':input').prop('disabled', !enabled);
+	}
+
+	function showTemplateReloadNotice(mode) {
+		var $notice = $('#wcp-template-reload-notice');
+		var needsReload = false;
+
+		if (mode === TEMPLATE_PARFUM && !$('#wcp-parfum-visual-editor').length) {
+			needsReload = true;
+		}
+		if (mode === TEMPLATE_DISCOVERY && !$('#wcp-discovery-visual-editor').length) {
+			needsReload = true;
+		}
+		if (mode === TEMPLATE_DEFAULT) {
+			needsReload = false;
+		}
+
+		if (!needsReload) {
+			$notice.remove();
+			return;
+		}
+
+		if (!$notice.length) {
+			$notice = $('<div id="wcp-template-reload-notice" class="notice notice-warning"><p></p></div>');
+			$('#wcp-template-selector').prepend($notice);
+		}
+
+		$notice.find('p').text('Salveaza produsul, apoi reincarca pagina pentru a incarca editorul vizual al template-ului selectat.');
 	}
 
 	function setTemplateMode(template) {
@@ -50,12 +90,19 @@
 
 		document.body.setAttribute('data-wcp-template', mode);
 
+		// Always restore standard Woo/Yoast/other metaboxes first.
+		restoreStandardPostboxes();
+
 		forceDisplay($parfumEditor, isParfum);
 		forceDisplay($discoveryEditor, isDiscovery);
-		forceDisplay(getDescriptionEditorPanels(), !isCustom);
+
+		if (isCustom) {
+			forceDisplay(getDescriptionEditorPanels(), false);
+		}
 
 		setEditorInputsEnabled($parfumEditor, isParfum);
 		setEditorInputsEnabled($discoveryEditor, isDiscovery);
+		showTemplateReloadNotice(mode);
 	}
 
 	function scheduleTemplateMode(template) {

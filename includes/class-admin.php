@@ -29,23 +29,31 @@ class WCP_Admin {
 			'high'
 		);
 
-		add_meta_box(
-			'wcp-parfum-visual-editor',
-			'Editor vizual - Parfum Find Love',
-			array( __CLASS__, 'render_visual_editor' ),
-			'product',
-			'normal',
-			'high'
-		);
+		$template = self::get_current_template();
 
-		add_meta_box(
-			'wcp-discovery-visual-editor',
-			'Editor vizual - 5 Sirene Discovery Kit',
-			array( __CLASS__, 'render_discovery_editor' ),
-			'product',
-			'normal',
-			'high'
-		);
+		// Register only the active visual editor so classic products keep a clean
+		// edit screen (Yoast, Woo panels, etc. stay visible and undisturbed).
+		if ( WCP_Product_Meta::TEMPLATE_PARFUM === $template ) {
+			add_meta_box(
+				'wcp-parfum-visual-editor',
+				'Editor vizual - Parfum Find Love',
+				array( __CLASS__, 'render_visual_editor' ),
+				'product',
+				'normal',
+				'high'
+			);
+		}
+
+		if ( WCP_Product_Meta::TEMPLATE_DISCOVERY === $template ) {
+			add_meta_box(
+				'wcp-discovery-visual-editor',
+				'Editor vizual - 5 Sirene Discovery Kit',
+				array( __CLASS__, 'render_discovery_editor' ),
+				'product',
+				'normal',
+				'high'
+			);
+		}
 	}
 
 	/**
@@ -153,7 +161,7 @@ class WCP_Admin {
 
 		$template = WCP_Product_Meta::get_template( $post->ID );
 
-		echo '<p class="wcp-template-selector-desc">Alege layout-ul paginii de produs. La template-urile Find Love se ascunde descrierea clasica si se afiseaza editorul vizual aferent.</p>';
+		echo '<p class="wcp-template-selector-desc">Alege layout-ul paginii de produs. La WooCommerce standard raman toate campurile clasice (inclusiv Yoast). La template-urile Find Love se ascunde doar descrierea clasica.</p>';
 		echo '<select id="wcp_template" name="wcp_template" class="widefat wcp-template-select">';
 
 		foreach ( WCP_Product_Meta::get_template_options() as $value => $label ) {

@@ -10,7 +10,8 @@
    Template visibility toggle (body class driven)
    -------------------------------------------------------------------------- */
 
-/* Default: hide custom editors */
+/* Default: never hide third-party metaboxes (Yoast, Woo, etc.).
+   Only hide custom editors if they happen to be present. */
 body.wcp-edit-mode-default #wcp-parfum-visual-editor,
 body.wcp-edit-mode-default #wcp-discovery-visual-editor,
 body[data-wcp-template="default"] #wcp-parfum-visual-editor,
@@ -18,7 +19,7 @@ body[data-wcp-template="default"] #wcp-discovery-visual-editor {
 	display: none !important;
 }
 
-/* Parfum: show parfum editor */
+/* Parfum: show only parfum editor, hide discovery editor if present */
 body.wcp-edit-mode-parfum_landing #wcp-parfum-visual-editor,
 body[data-wcp-template="parfum_landing"] #wcp-parfum-visual-editor {
 	display: block !important;
@@ -29,7 +30,7 @@ body[data-wcp-template="parfum_landing"] #wcp-discovery-visual-editor {
 	display: none !important;
 }
 
-/* Discovery: show discovery editor */
+/* Discovery: show only discovery editor, hide parfum editor if present */
 body.wcp-edit-mode-discovery_kit #wcp-discovery-visual-editor,
 body[data-wcp-template="discovery_kit"] #wcp-discovery-visual-editor {
 	display: block !important;
@@ -40,12 +41,16 @@ body[data-wcp-template="discovery_kit"] #wcp-parfum-visual-editor {
 	display: none !important;
 }
 
-/* Custom templates: hide classic product description */
+/* Custom templates: hide only classic product description editor */
 body.wcp-edit-mode-parfum_landing #postdivrich,
 body.wcp-edit-mode-discovery_kit #postdivrich,
 body[data-wcp-template="parfum_landing"] #postdivrich,
 body[data-wcp-template="discovery_kit"] #postdivrich {
 	display: none !important;
+}
+
+#wcp-template-reload-notice {
+	margin: 0 0 12px;
 }
 
 /* Visual editor shell */
