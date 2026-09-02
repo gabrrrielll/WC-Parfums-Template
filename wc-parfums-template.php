@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WC Parfums Template
  * Description: Extinde WooCommerce cu un template custom pentru paginile de produs parfum Find Love.
- * Version: 1.0.26
+ * Version: 1.0.29
  * Author: Gabriel Sandu
  * Requires at least: 6.0
  * Requires PHP: 7.4
@@ -13,7 +13,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WCP_VERSION', '1.0.26' );
+define( 'WCP_VERSION', '1.0.29' );
 define( 'WCP_PLUGIN_FILE', __FILE__ );
 define( 'WCP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WCP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -47,10 +47,12 @@ function wcp_init() {
 	require_once WCP_PLUGIN_DIR . 'includes/class-product-meta.php';
 	require_once WCP_PLUGIN_DIR . 'includes/class-admin.php';
 	require_once WCP_PLUGIN_DIR . 'includes/class-frontend.php';
+	require_once WCP_PLUGIN_DIR . 'includes/class-shortcodes.php';
 
 	WCP_Product_Meta::init();
 	WCP_Admin::init();
 	WCP_Frontend::init();
+	WCP_Shortcodes::init();
 }
 add_action( 'plugins_loaded', 'wcp_init' );
 

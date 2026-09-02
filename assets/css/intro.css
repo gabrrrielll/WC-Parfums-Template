@@ -1,0 +1,557 @@
+/* ==========================================================================
+   Find Love Scent intro landing (shortcode)
+   Scoped to .wcp-find-love-intro — does not affect global theme styles.
+   ========================================================================== */
+
+.wcp-find-love-intro {
+	--bg-cream: #faf6f0;
+	--bg-white: #ffffff;
+	--bg-dark: #000000;
+	--gold-primary: #c5a880;
+	--gold-light: #e0d0b8;
+	--gold-dark: #9e825a;
+	--gold-glow: rgba(197, 168, 128, 0.2);
+	--text-dark: #1c1b18;
+	--text-muted: #6e6b64;
+	--text-light: #ffffff;
+	--text-gold: #c5a880;
+	--font-heading: "Playfair Display", serif;
+	--font-body: "Montserrat", sans-serif;
+	--font-script: "Playfair Display", serif;
+	--transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+	--border-gold-thin: 1px solid #c5a880;
+
+	width: 100%;
+	font-family: var(--font-body);
+	line-height: 1.6;
+	color: var(--text-dark);
+}
+
+.wcp-find-love-intro,
+.wcp-find-love-intro *,
+.wcp-find-love-intro *::before,
+.wcp-find-love-intro *::after {
+	box-sizing: border-box;
+}
+
+.wcp-find-love-intro .fls-landing-container {
+	width: 100% !important;
+	background-color: #e8dfd0 !important;
+	background-image: linear-gradient(rgba(255, 255, 255, 0.629), rgba(249, 249, 249, 0.673)), url("https://andradadan.com/axs/wp-content/uploads/2026/06/fundal-repetitiv-2.png") !important;
+	background-repeat: repeat !important;
+	background-position: center top !important;
+	overflow: hidden;
+}
+
+.wcp-find-love-intro .fls-serif-title {
+	font-family: var(--font-heading);
+	font-weight: 300;
+	color: var(--text-dark);
+	letter-spacing: 1px;
+}
+
+.wcp-find-love-intro .fls-script-subtitle {
+	font-family: var(--font-script);
+	font-style: italic;
+	font-size: 2.5rem;
+	color: var(--gold-primary);
+	line-height: 1;
+}
+
+.wcp-find-love-intro .fls-btn-pill {
+	display: inline-flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+	padding: 14px 38px !important;
+	margin: 0 !important;
+	border: var(--border-gold-thin) !important;
+	border-radius: 50px !important;
+	background-color: var(--bg-white) !important;
+	color: var(--text-dark) !important;
+	font-family: var(--font-body) !important;
+	font-size: 0.8rem !important;
+	font-weight: 500 !important;
+	text-transform: uppercase !important;
+	letter-spacing: 2px !important;
+	text-decoration: none !important;
+	text-align: center !important;
+	text-indent: 0 !important;
+	cursor: pointer !important;
+	transition: var(--transition-smooth) !important;
+	box-sizing: border-box !important;
+	width: auto !important;
+	max-width: 100% !important;
+	height: auto !important;
+	line-height: normal !important;
+}
+
+.wcp-find-love-intro .fls-btn-pill::before,
+.wcp-find-love-intro .fls-btn-pill::after {
+	content: none !important;
+	display: none !important;
+}
+
+.wcp-find-love-intro .fls-btn-pill:hover {
+	background-color: var(--gold-primary) !important;
+	color: var(--text-light) !important;
+	box-shadow: 0 6px 20px var(--gold-glow) !important;
+	transform: translateY(-2px) !important;
+}
+
+.wcp-find-love-intro .fls-btn-pill:active {
+	transform: translateY(0) !important;
+}
+
+/* Section 1: Hero */
+.wcp-find-love-intro .fls-hero-section {
+	position: relative;
+	width: 100%;
+	height: 85vh;
+	min-height: 550px;
+	max-height: 900px;
+	background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.5)),
+		url("https://andradadan.com/axs/wp-content/uploads/2026/06/find-love-the-scent-web-page-72dpi-1.png");
+	background-size: cover;
+	background-position: center 30%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 20px;
+}
+
+.wcp-find-love-intro .fls-hero-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	max-width: 90%;
+	animation: wcp-fls-fadeInDown 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.wcp-find-love-intro .fls-hero-logo {
+	max-width: 500px;
+	width: 100%;
+	height: auto;
+	margin-bottom: 50px;
+	filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.15));
+}
+
+.wcp-find-love-intro .fls-hero-btn {
+	border-color: var(--text-light) !important;
+	color: var(--text-light) !important;
+	background: rgba(0, 0, 0, 0.2) !important;
+	backdrop-filter: blur(5px) !important;
+	-webkit-backdrop-filter: blur(5px) !important;
+}
+
+.wcp-find-love-intro .fls-hero-btn:hover {
+	background-color: var(--text-light) !important;
+	color: var(--text-dark) !important;
+	box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25) !important;
+	border-color: var(--text-light) !important;
+}
+
+/* Section 2: Intro */
+.wcp-find-love-intro .fls-intro-section {
+	padding: 50px 3%;
+	max-width: 1400px;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	gap: 80px;
+}
+
+.wcp-find-love-intro .fls-intro-image-container {
+	flex: 0.5;
+	display: flex;
+	justify-content: center;
+	position: relative;
+}
+
+.wcp-find-love-intro .fls-intro-img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+.wcp-find-love-intro .fls-intro-text-container {
+	flex: 1;
+}
+
+.wcp-find-love-intro .fls-intro-heading {
+	font-size: 2.8rem;
+	line-height: 1.2;
+	margin-bottom: 25px;
+	color: var(--text-dark);
+}
+
+.wcp-find-love-intro .fls-intro-subheading {
+	margin-bottom: 30px;
+}
+
+.wcp-find-love-intro .fls-intro-subheading h3 {
+	font-family: var(--font-heading);
+	font-size: 1.8rem;
+	font-weight: 600;
+	color: var(--text-dark);
+	margin-bottom: 5px;
+}
+
+.wcp-find-love-intro .fls-intro-description {
+	font-size: 1rem;
+	color: var(--text-muted);
+	margin-bottom: 40px;
+	text-align: justify;
+}
+
+.wcp-find-love-intro .fls-intro-product-title {
+	font-size: 1.8rem;
+	margin-bottom: 15px;
+	font-weight: 400;
+}
+
+.wcp-find-love-intro .fls-intro-description p {
+	margin-bottom: 20px;
+}
+
+.wcp-find-love-intro .fls-intro-description p:last-child {
+	margin-bottom: 0;
+}
+
+/* Section 3: Collection */
+.wcp-find-love-intro .fls-collection-section {
+	padding: 50px 3%;
+	max-width: 1400px;
+	display: flex;
+	align-items: center;
+	gap: 80px;
+	position: relative;
+	margin: auto !important;
+}
+
+.wcp-find-love-intro .fls-collection-section::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: radial-gradient(circle at 80% 20%, rgba(197, 168, 128, 0.03) 0%, transparent 60%);
+	pointer-events: none;
+}
+
+.wcp-find-love-intro .fls-collection-text-container {
+	flex: 1.3;
+	z-index: 2;
+}
+
+.wcp-find-love-intro .fls-collection-heading {
+	font-size: 2.8rem;
+	line-height: 1.2;
+	margin-bottom: 40px;
+}
+
+.wcp-find-love-intro .fls-collection-points {
+	display: flex;
+	flex-direction: column;
+	gap: 35px;
+	margin-bottom: 30px;
+}
+
+.wcp-find-love-intro .fls-point-item {
+	border-left: 2px solid var(--gold-primary);
+	padding-left: 25px;
+}
+
+.wcp-find-love-intro .fls-point-item--plain {
+	border-left-color: var(--text-dark);
+}
+
+.wcp-find-love-intro .fls-point-item--quote {
+	border-left: none;
+	padding-left: 0;
+}
+
+.wcp-find-love-intro .fls-point-title {
+	font-family: var(--font-heading);
+	font-size: 1.4rem;
+	font-weight: 600;
+	color: var(--text-dark);
+	margin-bottom: 8px;
+}
+
+.wcp-find-love-intro .fls-point-desc {
+	font-size: 1.15rem;
+	color: var(--text-muted);
+}
+
+.wcp-find-love-intro .fls-point-desc--lead {
+	font-size: 1.05rem;
+	line-height: 1.6;
+	color: var(--text-dark);
+}
+
+.wcp-find-love-intro .fls-point-desc--quote {
+	font-style: italic;
+}
+
+.wcp-find-love-intro .fls-collection-badge-container {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 2;
+}
+
+.wcp-find-love-intro .fls-collection-badge {
+	max-width: 380px;
+	width: 100%;
+	height: auto;
+	animation: wcp-fls-floatBadge 6s ease-in-out infinite;
+}
+
+/* Section 4: Perfumes grid */
+.wcp-find-love-intro .fls-perfumes-section {
+	padding: 0 8% 50px 8%;
+	max-width: 1300px;
+	margin: 0 auto;
+}
+
+.wcp-find-love-intro .fls-perfumes-grid {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	max-width: 1100px;
+	margin: 0 auto;
+	padding-top: 50px;
+	gap: 30px;
+}
+
+.wcp-find-love-intro .fls-perfumes-row {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	gap: 30px;
+}
+
+.wcp-find-love-intro .fls-perfume-wrapper {
+	flex: 0 1 300px !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+	transition: var(--transition-smooth) !important;
+}
+
+.wcp-find-love-intro .fls-perfume-wrapper p {
+	text-align: center !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 100% !important;
+	display: flex !important;
+	justify-content: center !important;
+	align-items: center !important;
+}
+
+@media (min-width: 769px) {
+	.wcp-find-love-intro .fls-perfumes-grid {
+		gap: 90px;
+	}
+
+	.wcp-find-love-intro .fls-stagger-up {
+		transform: translateY(-50px) !important;
+	}
+
+	.wcp-find-love-intro .fls-perfumes-row-2 {
+		margin-top: 0 !important;
+	}
+}
+
+.wcp-find-love-intro .fls-perfume-card {
+	width: 100% !important;
+	background: transparent !important;
+	display: flex !important;
+	flex-direction: column !important;
+	transition: var(--transition-smooth) !important;
+	filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.04)) !important;
+}
+
+.wcp-find-love-intro .fls-perfume-card:hover {
+	transform: translateY(-5px) !important;
+	filter: drop-shadow(0 12px 25px rgba(197, 168, 128, 0.25)) !important;
+}
+
+.wcp-find-love-intro .fls-perfume-header-img {
+	width: 100% !important;
+	height: auto !important;
+	display: block !important;
+	margin: 0 0 15px 0 !important;
+	padding: 0 !important;
+}
+
+.wcp-find-love-intro .fls-perfume-card-img {
+	width: 100% !important;
+	height: auto !important;
+	display: block !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.wcp-find-love-intro .fls-perfume-btn {
+	margin-top: 20px !important;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	width: max-content !important;
+	display: inline-flex !important;
+}
+
+.wcp-find-love-intro .fls-bottom-logo-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 0;
+	margin-bottom: 110px !important;
+	padding: 0 20px;
+}
+
+.wcp-find-love-intro .fls-bottom-logo {
+	max-width: 420px;
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+@keyframes wcp-fls-fadeInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-30px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes wcp-fls-floatBadge {
+	0% {
+		transform: translateY(0) rotate(0deg);
+	}
+
+	50% {
+		transform: translateY(-12px) rotate(1deg);
+	}
+
+	100% {
+		transform: translateY(0) rotate(0deg);
+	}
+}
+
+@media (max-width: 768px) {
+	.wcp-find-love-intro .fls-intro-section {
+		flex-direction: column;
+		padding: 60px 20px;
+		gap: 40px;
+		text-align: center;
+	}
+
+	.wcp-find-love-intro .fls-intro-image-container {
+		width: 100%;
+		max-width: 450px;
+	}
+
+	.wcp-find-love-intro .fls-intro-heading,
+	.wcp-find-love-intro .fls-collection-heading {
+		font-size: 2.1rem;
+	}
+
+	.wcp-find-love-intro .fls-intro-description {
+		text-align: center;
+	}
+
+	.wcp-find-love-intro .fls-collection-section {
+		flex-direction: column-reverse;
+		padding: 20px 20px;
+		gap: 40px;
+		text-align: center;
+	}
+
+	.wcp-find-love-intro .fls-collection-points {
+		text-align: left;
+	}
+
+	.wcp-find-love-intro .fls-collection-badge {
+		max-width: 260px;
+	}
+
+	.wcp-find-love-intro .fls-perfumes-section {
+		padding: 20px;
+	}
+
+	.wcp-find-love-intro .fls-perfumes-row {
+		display: contents;
+	}
+
+	.wcp-find-love-intro .fls-perfumes-grid {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 20px;
+		padding-top: 10px;
+	}
+
+	.wcp-find-love-intro .fls-perfume-wrapper {
+		flex: 0 1 calc(50% - 15px);
+		max-width: 300px;
+	}
+}
+
+@media (max-width: 480px) {
+	.wcp-find-love-intro .fls-hero-section {
+		height: 75vh;
+		background-position: center 30%;
+	}
+
+	.wcp-find-love-intro .fls-hero-logo {
+		max-width: 300px;
+		margin-bottom: 40px;
+	}
+
+	.wcp-find-love-intro .fls-btn-pill {
+		padding: 12px 28px;
+		font-size: 0.75rem;
+	}
+
+	.wcp-find-love-intro .fls-intro-heading,
+	.wcp-find-love-intro .fls-collection-heading {
+		font-size: 1.8rem;
+	}
+
+	.wcp-find-love-intro .fls-script-subtitle {
+		font-size: 2rem;
+	}
+
+	.wcp-find-love-intro .fls-perfume-wrapper {
+		flex: 0 1 100%;
+	}
+
+	.wcp-find-love-intro .fls-collection-points {
+		gap: 25px;
+	}
+
+	.wcp-find-love-intro .fls-point-item {
+		padding-left: 15px;
+	}
+
+	.wcp-find-love-intro .fls-point-title {
+		font-size: 1.2rem;
+	}
+
+	.wcp-find-love-intro .fls-point-desc {
+		font-size: 0.85rem;
+	}
+}
